@@ -59,7 +59,7 @@ public class UserLoginRequest extends CommonUtils{
 			statusCode = response.getStatusCode();
 			statusLine = response.getStatusLine();
 			
-			System.out.println("Response :" +response.asPrettyString());
+			//System.out.println("Response :" +response.asPrettyString());
 			System.out.println("Token :" +adminToken);
 		
 		return response;

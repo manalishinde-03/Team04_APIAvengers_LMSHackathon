@@ -1,10 +1,30 @@
 package api.Utility;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ResourceBundle;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import api.Pojo.BatchRequestPojo;
+import api.Pojo.BatchRequestBodyPojo;
+import lombok.Getter;
+import lombok.Setter;
 
 public class CommonUtils {
 	
+	@Getter
+	@Setter
+	public static Integer batchID;
+	public static String batchName;	
+	
 	public static String adminToken;
+	
 	public static ResourceBundle config = ResourceBundle.getBundle("config");
 	
 	public static String baseURI = config.getString("baseUrl");
@@ -25,4 +45,10 @@ public class CommonUtils {
 		adminToken = token;
 	}
 
+	
+	
+	
+	
+	
+	
 }
