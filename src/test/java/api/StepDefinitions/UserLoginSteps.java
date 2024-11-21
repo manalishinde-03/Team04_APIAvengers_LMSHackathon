@@ -27,7 +27,9 @@ public void admin_calls_post_https_method_with_valid_endpoint() {
 @Then("Admin receives {int} OK with auto generated token")
 public void admin_receives_created_with_auto_generated_token(int statusCode) {
 	
-	response.then().statusCode(statusCode);
+	response.then().assertThat().statusCode(statusCode);
+	
+	
 }
 
 }
