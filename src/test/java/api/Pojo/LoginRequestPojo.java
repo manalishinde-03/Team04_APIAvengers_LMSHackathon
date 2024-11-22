@@ -19,5 +19,8 @@ public class LoginRequestPojo {
 		this.password = password;
 	}
 
-
 }
+
+
+
+

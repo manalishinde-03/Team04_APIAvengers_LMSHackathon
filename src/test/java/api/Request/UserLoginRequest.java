@@ -4,7 +4,6 @@ import api.Payload.UserLoginPayload;
 import api.Pojo.LoginRequestPojo;
 import api.Utility.CommonUtils;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -16,26 +15,7 @@ public class UserLoginRequest extends CommonUtils{
 	int statusCode; 
 	String statusLine;
 	LoginRequestPojo loginRequestPojo = new LoginRequestPojo();
-	
-	//Admin Valid login request
-//	public Response adminLoginRequest() {
-//		
-//		loginRequestPojo=UserLoginPayload.adminLogin();
-//		
-//		 response = RestAssured.given()				 
-//				.baseUri(baseURI)
-//				.contentType(ContentType.JSON)
-//				.body(loginRequestPojo)
-//				.post(loginEndPoint);		
-//		 
-//		 System.out.println("Response: " + response.asPrettyString());
-//		
-//		 adminToken = response.jsonPath().getString("token");		
-//		setAdminToken(adminToken);
-//		statusCode = response.getStatusCode();
-//		return response;
-//	}
-	
+
 	public RequestSpecification buildRequest() {
 		RestAssured.baseURI = baseURI;
 		loginRequestPojo=UserLoginPayload.adminLogin();
@@ -61,11 +41,37 @@ public class UserLoginRequest extends CommonUtils{
 			
 			System.out.println("Response :" +response.asPrettyString());
 			System.out.println("Token :" +adminToken);
+			System.out.println("StatusCode :" +statusCode);
 		
 		return response;
 	}
-	
-	
+
+	public RequestSpecification buildinvalidRequest() {
+		RestAssured.baseURI = baseURI;
+
+		request = RestAssured.given()
+				.baseUri(baseURI)
+				.header("Content-Type", "application/json")
+				.body(UserLoginPayload.invalidLogin());
+
+		System.out.println("Request :" +request.log().all());
+		return request;
+
+	}
+	public Response sendinvalidRequest() {
+
+		response = request.when().post(invalidloginEndPoint);
+
+		//adminToken = response.jsonPath().getString("token");
+		//setAdminToken(adminToken);
+		statusCode = response.getStatusCode();
+		statusLine = response.getStatusLine();
+
+		System.out.println("Response :" +response.asPrettyString());
+		System.out.println("Token :" +adminToken);
+
+		return response;
+	}
 
 
 }
