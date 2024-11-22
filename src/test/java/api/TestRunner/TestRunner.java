@@ -12,7 +12,7 @@ import io.cucumber.testng.CucumberOptions;
 				},
 		monochrome=false,  //console output color
 		features = {"src/test/resources/features/02programModule/programCreate.feature" }, //location of feature files
-		tags = "@TC3",
+		tags = "@TC4",
 		glue={"api.StepDefinitions"}
 		
 		)

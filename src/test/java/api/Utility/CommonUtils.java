@@ -2,12 +2,23 @@ package api.Utility;
 
 import java.util.ResourceBundle;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class CommonUtils {
 	
 	public static String adminToken;
 	private static int programID;
 	public static String programName;
 	public static String programStatus;
+	
+	
+	
+	@Getter
+	@Setter
+	public static Integer batchID;
+	public static String batchName;	
+	
 	public static ResourceBundle config = ResourceBundle.getBundle("config");
 	
 	public static String baseURI = config.getString("baseUrl");

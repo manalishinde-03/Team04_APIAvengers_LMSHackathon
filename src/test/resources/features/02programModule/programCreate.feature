@@ -20,3 +20,17 @@ Feature: Create Program Module
     When Admin sends POST HTTPS Request without Authorization token
     Then Admin receives 401 Unauthorized Status code
 
+@CreateProgramWithExcel 
+ 
+ 
+ @TC4
+ Scenario Outline: Validate API response for creating a program
+    Given Admin creates POST request body for "<TestCaseID>"
+    When Admin sends POST request to create a program for "<TestCaseID>"
+    Then Response status code should be "<ExpectedStatusCode>"
+
+    Examples:
+      | TestCaseID | ExpectedStatusCode |
+      | TC01      | 201                |
+      | TC02      | 400                |
+ 
