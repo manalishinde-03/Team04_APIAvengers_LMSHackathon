@@ -11,4 +11,10 @@ public class BatchRequestPojo {
 	private String Endpoint;
 	private String Authorizarion;
 	private Integer StatusCode;
+	
+	@Override
+	public String toString() {
+		return "BatchRequestPojo [createbatch=" + createbatch + ", Endpoint=" + Endpoint + ", Authorizarion="
+				+ Authorizarion + ", StatusCode=" + StatusCode + "]";
+	}
 }

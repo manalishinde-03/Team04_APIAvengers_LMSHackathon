@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import org.apache.maven.surefire.shared.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import api.Pojo.BatchRequestPojo;
+import api.Pojo.GetAllBatchPojo;
 import api.Pojo.BatchRequestBodyPojo;
 import api.Utility.CommonUtils;
 import io.restassured.RestAssured;
@@ -33,31 +35,36 @@ public class CreateBatchRequest extends CommonUtils{
 	BatchRequestPojo createRequest;
 	
 	
-public RequestSpecification createBatchbuildRequest(String Testcase) throws JsonProcessingException, IOException
-{
-	RestAssured.baseURI = baseURI;
-	createRequest = batchPojoUtil("batch",Testcase);
-	dataRequestBody = objectMapper.writeValueAsString(createRequest.getCreatebatch());	
-	System.out.println(dataRequestBody);		
-	return request;
 	
-}
+	
+	  public RequestSpecification createBatchbuildRequest(String Testcase) throws
+	  JsonProcessingException, IOException{	  
+		setProgramName(config.getString("ProgramName"));
+		setProgramId(Integer.parseInt(config.getString("ProgramId")));
+	  createRequest = batchPojoUtil("batch",Testcase); 
+	  System.out.println("createBatchbuildRequest :::::: createRequest ::"+createRequest.toString());
+	  dataRequestBody =	  objectMapper.writeValueAsString(createRequest.getCreatebatch());
+	  System.out.println(dataRequestBody); return request; 
+	  
+	  }
+	
 
 
-public Response CreateBatchSendRequest(){	
+public Response CreateBatchSendRequest(){
 	  
       
 	String Endpoint= (!createRequest.getEndpoint().equalsIgnoreCase("Valid")) ? createRequest.getEndpoint() :config.getString("createBatchEndpoint");
 	String Authorization= (!createRequest.getAuthorizarion().equalsIgnoreCase("Valid")) ? null : getAdminToken();	
 	
+	
 	request = RestAssured.given()
 		    .baseUri(baseURI)                           
 		    .header("Content-Type", "application/json")		    
-		    .body(dataRequestBody) ;
+		    .body(dataRequestBody) ;	
 	
-	if (null!=Authorization) {
-		request.header("Authorization", "Bearer " + Authorization );
-		}	 
+	  if (null!=Authorization) { 
+		  request.header("Authorization", "Bearer " +	 Authorization );
+	   }	
 		
 	response=request
 		    .when()                                      
@@ -98,6 +105,70 @@ public boolean DataTypeValidation()
 }
 
 
+public RequestSpecification buildGetallBatchrequest(String GetTestCases) throws IOException
+{		
+	
+	createRequest = batchPojoUtil("Batch",GetTestCases);
+	System.out.println("buildGetallBatchrequest :::: createRequest ::"+createRequest.toString() );
+	return request;
+}
+
+public Response getAllbatchSendrequest()
+{
+	String Endpoint= (!createRequest.getEndpoint().equalsIgnoreCase("Valid")) ? createRequest.getEndpoint() :config.getString("createBatchEndpoint");
+	String Authorization= (!createRequest.getAuthorizarion().equalsIgnoreCase("Valid")) ? null : getAdminToken();
+	
+	System.out.println("Sheet Endpoint"+createRequest.getEndpoint() +", Authorization from Sheet ::"+Authorization);
+	
+	request = RestAssured.given()
+		    .baseUri(baseURI) ;                  
+		    
+	  if (null!=Authorization) { 
+		  request.header("Authorization", "Bearer " +	 Authorization );
+	   }	
+		
+	response=request
+		    .when()                                      
+		    .get(Endpoint); 	
+	
+	statusCode = response.getStatusCode();
+	statusLine = response.getStatusLine();
+	
+	System.out.println("Response status code:" +response.getStatusCode());
+	System.out.println("ResponseBody:" + response.asString() );	
+	return response;
+	
+	
+}
+
+
+
+
+public GetAllBatchPojo getAllbatchData(String Sheet, String TestCase) throws IOException
+{
+	XSSFWorkbook wb;		
+	File file = new File(config.getString("DataFile"));																							
+	FileInputStream fis = new FileInputStream(file); 
+	wb = new XSSFWorkbook(fis);
+	XSSFSheet sheet = wb.getSheet(Sheet);	
+	
+	GetAllBatchPojo getall = new GetAllBatchPojo();
+	for (Row row : sheet) {
+
+		Cell firstCell = row.getCell(0);
+		if (firstCell != null && firstCell.getCellType() == CellType.STRING
+				&& firstCell.getStringCellValue().equals(TestCase)) 
+		{	
+			getall.setEndpoint(row.getCell(1).getStringCellValue());
+			getall.setAuthorizarion(row.getCell(2).getStringCellValue());
+		}
+		wb.close();	
+	}
+	return getall;
+}
+
+
+
 public  BatchRequestPojo batchPojoUtil(String Sheet, String TestCase) throws IOException {
 	
 	XSSFWorkbook wb;		
@@ -106,54 +177,84 @@ public  BatchRequestPojo batchPojoUtil(String Sheet, String TestCase) throws IOE
 	wb = new XSSFWorkbook(fis);
 	XSSFSheet sheet = wb.getSheet(Sheet);		
 	BatchRequestPojo batchreq= new BatchRequestPojo();
-	BatchRequestBodyPojo createBatch= new BatchRequestBodyPojo();
-	
+	BatchRequestBodyPojo createBatch= new BatchRequestBodyPojo();	
 	for (Row row : sheet) {
 
 		Cell firstCell = row.getCell(0);
-		if (firstCell != null && firstCell.getCellType() == CellType.STRING
-				&& firstCell.getStringCellValue().equals(TestCase)) 
-		{				
-			createBatch.setBatchDescription(row.getCell(5).getStringCellValue());
+		if(null != firstCell && firstCell.getStringCellValue()!="" && firstCell.getCellType() == CellType.STRING
+				&& firstCell.getStringCellValue().equals(TestCase) ) {
 			
-			Cell Batchname = row.getCell(4);
-			if (Batchname != null && Batchname.getCellType() == CellType.STRING) {
-	            createBatch.setBatchStatus(Batchname.getStringCellValue());
-	        } else {
-	            createBatch.setBatchName(null); // Set to null if the cell is empty or doesn't exist
-	        }
-			//createBatch.setBatchName(row.getCell(4).getStringCellValue());			
-			
-			
-			createBatch.setProgramName(row.getCell(9).getStringCellValue());			
-			
-			Cell BatchStatus = row.getCell(7);
-	        if (BatchStatus != null && BatchStatus.getCellType() == CellType.STRING) {
-	            createBatch.setBatchStatus(BatchStatus.getStringCellValue());
-	        } else {
-	            createBatch.setBatchStatus(null); // Set to null if the cell is empty or doesn't exist
-	        }
-			
-			if (row.getCell(8) != null) {
-	            String programIdStr = row.getCell(8).getStringCellValue();	           
-	            createBatch.setProgramId(programIdStr != null && !programIdStr.isEmpty() ? Integer.parseInt(programIdStr.trim()) : null);
-	        }
-							
-			
-			if (row.getCell(6) != null) {
-	            String NoOfClasses = row.getCell(6).getStringCellValue();
-	            System.out.println("Number of classes:"+NoOfClasses);
-	            createBatch.setBatchNoOfClasses(NoOfClasses != null && !NoOfClasses.isEmpty() ? Integer.parseInt(NoOfClasses.trim()) : null);
-	        }         
-			batchreq.setCreatebatch(createBatch); 
-			batchreq.setAuthorizarion(row.getCell(10).getStringCellValue());
-			System.out.println("Authorizrion" +row.getCell(10).getStringCellValue());
-			
-			batchreq.setEndpoint(row.getCell(2).getStringCellValue());			
-			System.out.println("Endpoint" +row.getCell(2).getStringCellValue());
-		}
-	}
-	wb.close();	
+			 System.out.println("Row :"+firstCell.getStringCellValue());
+			 
+			 
+			if (TestCase.startsWith("POST")) 
+			{	
+				
+				Cell BatchDescription=row.getCell(5);
+				if (BatchDescription != null && BatchDescription.getCellType() == CellType.STRING) {
+		            createBatch.setBatchDescription(BatchDescription.getStringCellValue());
+		        } else {
+		            createBatch.setBatchDescription(null); // Set to null if the cell is empty or doesn't exist
+		        }
+				
+				
+				
+				Cell Batchname = row.getCell(4);
+				
+				if (Batchname != null && Batchname.getCellType() == CellType.STRING) {
+		            createBatch.setBatchName(Batchname.getStringCellValue());
+		        } else {
+		            createBatch.setBatchName(null); // Set to null if the cell is empty or doesn't exist
+		        }
+				//createBatch.setBatchName(row.getCell(4).getStringCellValue());			
+				
+				
+				String prgname= row.getCell(9).getStringCellValue();
+				if(prgname=="Valid")
+				{
+					createBatch.setProgramName(getProgramName());
+				}else {
+					createBatch.setProgramName(row.getCell(9).getStringCellValue());
+					
+				}
+				
+				
+				Cell BatchStatus = row.getCell(7);
+		        if (BatchStatus != null && BatchStatus.getCellType() == CellType.STRING) {
+		            createBatch.setBatchStatus(BatchStatus.getStringCellValue());
+		        } else {
+		            createBatch.setBatchStatus(null); // Set to null if the cell is empty or doesn't exist
+		        }
+				
+		        Cell prgID=row.getCell(8);
+				if (prgID != null && prgID.getStringCellValue().equalsIgnoreCase("Valid")){
+					createBatch.setProgramId(getProgramId());   
+		        }
+				else if (prgID != null){						   
+			            createBatch.setProgramId(Integer.parseInt(prgID.getStringCellValue()));
+			        }else {
+			        	createBatch.setProgramId(null);
+			        }
+				
+				
+				if (row.getCell(6) != null) {
+		            String NoOfClasses = row.getCell(6).getStringCellValue();		            
+		            createBatch.setBatchNoOfClasses(NoOfClasses != null && !NoOfClasses.isEmpty() ? Integer.parseInt(NoOfClasses.trim()) : null);
+		        }         
+				batchreq.setCreatebatch(createBatch); 
+					
+				}
+
+				//System.out.println("Endpoint ::" +row.getCell(2).getStringCellValue());
+				batchreq.setEndpoint(row.getCell(2).getStringCellValue());		
+				
+				//System.out.println("Authorizrion ::" +row.getCell(10).getStringCellValue());
+				batchreq.setAuthorizarion(row.getCell(10).getStringCellValue());
+			}	
+		
+		}		
+	
+	wb.close();			
 	
 	return batchreq;
 	

@@ -16,10 +16,11 @@ import api.Pojo.BatchRequestBodyPojo;
 import lombok.Getter;
 import lombok.Setter;
 
-public class CommonUtils {
+public class CommonUtils {	
 	
-	@Getter
-	@Setter
+	
+	public static String ProgramName;
+	public static Integer ProgramId;
 	public static Integer batchID;
 	public static String batchName;	
 	
@@ -27,6 +28,22 @@ public class CommonUtils {
 	
 	public static ResourceBundle config = ResourceBundle.getBundle("config");
 	
+	public static String getProgramName() {
+		return ProgramName;
+	}
+
+	public static void setProgramName(String programName) {
+		ProgramName = programName;
+	}
+
+	public static Integer getProgramId() {
+		return ProgramId;
+	}
+
+	public static void setProgramId(Integer programId) {
+		ProgramId = programId;
+	}
+
 	public static String baseURI = config.getString("baseUrl");
 
 	
