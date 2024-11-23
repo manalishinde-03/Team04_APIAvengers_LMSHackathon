@@ -83,37 +83,38 @@ public class CreateProgramRequest extends CommonUtils {
 		System.out.println("Using Endpoint: " + endpoint);
 
 		RestAssured.baseURI = CommonUtils.baseURI;
-		Response response = RestAssured.given().header("Content-Type", "application/json")
-				// .header("Authorization", "Bearer " +
-				// "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0QGdtYWlsLmNvbSIsImlhdCI6MTczMjMwMjQyNywiZXhwIjoxNzMyMzMxMjI3fQ.K4mVj5EwNBgebDRS6k4eBvidN_d-iL_FGQPvxm6lTaWaPR84csTkZYFocY6E-PrU709WVm7gQ4doQ6HVCObTmg")
-				.header("Authorization", "Bearer " + CommonUtils.getAdminToken()).body(programData)
-				// .post(CommonUtils.createProgramEndPoint);
+		Response response = RestAssured
+				.given()
+				.header("Content-Type", "application/json")
+				.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+				 .body(programData)
 				.post(endpoint);
 
-		// programID = response.jsonPath().getInt("programId");
-
-		JsonPath jsonPath = response.jsonPath();
-		if (jsonPath.get("programId") != null) {
-			programID = jsonPath.getInt("programId");
-			System.out.println("Program ID from response: " + programID);
-		} else {
-			System.out.println("No Program ID found in the response.");
+		
+		if(response.getStatusCode()==201) {
+			
+			JsonPath jsonPath = response.jsonPath();
+			if (jsonPath.get("programId") != null) {
+				programID = jsonPath.getInt("programId");
+				System.out.println("Program ID from response: " + programID);
+				
+				CommonUtils.setProgramID(programID); 
+				
+			} else {
+				System.out.println("No Program ID found in the response.");
+			}
+			
+			
+			programName = response.jsonPath().getString("programName");
+			System.out.println("Program Name from response: " + programName);
+			CommonUtils.setProgramName(programName);
+			
 		}
-		programName = response.jsonPath().getString("programName");
+		
 		programStatus = response.jsonPath().getString("programStatus");
 
 		System.out.println("Response Status Code: " + response.getStatusCode());
 		System.out.println("Response Body: " + response.getBody().asPrettyString());
-
-		/*
-		 * CommonUtils.setProgramID(programID); 
-		 * CommonUtils.setProgramName(programName);
-		 * CommonUtils.setProgramStatus(programStatus);
-		 * 
-		 * CommonUtils.setProgramID(programID); 
-		 * CommonUtils.setProgramName(programName);
-		 * CommonUtils.setProgramStatus(programStatus);
-		 */
 
 		return response;
 	}
@@ -135,7 +136,6 @@ public class CreateProgramRequest extends CommonUtils {
 		if (requestBody != null) {
 			request.body(requestBody);
 		}
-
 		
 		response = request
 				.post(endpoint);
@@ -161,14 +161,14 @@ public class CreateProgramRequest extends CommonUtils {
 		case "GET" :
 			response = RestAssured
 			.given().header("Content-Type", "application/json")
-			.header("Authorization","Bearer "+ "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0QGdtYWlsLmNvbSIsImlhdCI6MTczMjM0ODQxMSwiZXhwIjoxNzMyMzc3MjExfQ._wL9zdTH1qY6GDAeEr7FKsC0Di06pdusCPnCxqgmt20AOtwwSizeyKioK7_0WTk1X8XZRMkEZ80OUjML4ib4IA")
+			.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
 			.get(endpoint);
 			 break;
 		
 		case "PUT" :
 		response = RestAssured
 		.given().header("Content-Type", "application/json")
-		.header("Authorization", "Bearer "+ "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0QGdtYWlsLmNvbSIsImlhdCI6MTczMjM0ODQxMSwiZXhwIjoxNzMyMzc3MjExfQ._wL9zdTH1qY6GDAeEr7FKsC0Di06pdusCPnCxqgmt20AOtwwSizeyKioK7_0WTk1X8XZRMkEZ80OUjML4ib4IA")
+		.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
 		.put(endpoint);
 		break;
 		 default:
