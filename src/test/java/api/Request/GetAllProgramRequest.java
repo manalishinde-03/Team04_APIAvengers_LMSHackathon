@@ -1,13 +1,12 @@
 package api.Request;
 
-import api.Payload.UserLoginPayload;
 import api.Pojo.LoginRequestPojo;
 import api.Utility.CommonUtils;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class Get_All_ProgramRequest extends CommonUtils {
+public class GetAllProgramRequest extends CommonUtils {
 
     public static String adminToken;
     public Response response;
@@ -27,40 +26,20 @@ public class Get_All_ProgramRequest extends CommonUtils {
         return request;
 
     }
-    public Response sendRequest() {
+    public Response sendRequest(String method, String endPoint) {
 
-        response = request.when().get(AllPrograms);
+        if ("GET".equalsIgnoreCase(method)) {
+            response = request.when().get(endPoint); //AllPrograms);
+        }
+        else if ("POST".equalsIgnoreCase(method)) {
+            response = request.when().post(endPoint); //AllPrograms);
+        }
 
         statusCode = response.getStatusCode();
         statusLine = response.getStatusLine();
 
         System.out.println("Response :" +response.asPrettyString());
         System.out.println("StatusCode :" +statusCode);
-
-        return response;
-    }
-
-    public Response sendinvalidRequest() {
-
-        response = request.when().get(invalidprogramendpoint);
-
-        statusCode = response.getStatusCode();
-        statusLine = response.getStatusLine();
-
-        System.out.println("Response :" +response.asPrettyString());
-        System.out.println("Token :" +adminToken);
-
-        return response;
-    }
-    public Response sendinvalidMethod() {
-
-        response = request.when().post(AllPrograms);
-
-        statusCode = response.getStatusCode();
-        statusLine = response.getStatusLine();
-
-        System.out.println("Response :" +response.asPrettyString());
-        System.out.println("Token :" +adminToken);
 
         return response;
     }
