@@ -7,6 +7,9 @@ public class CreateProgramRequestPojo {
 	private String programDescription;
 	private String programName;
 	private String programStatus;
+	
+	@JsonIgnore
+	private String endpoint;
 
 	@JsonIgnore
 	private String testCaseId;
@@ -53,6 +56,15 @@ public class CreateProgramRequestPojo {
 
 	public void setProgramStatus(String programStatus) {
 		this.programStatus = programStatus;
+	}
+
+	public String getEndpoint() {
+        return endpoint; // Getter for Endpoint
+    }
+	
+	public void setEndpoint(String endpoint) {
+		 this.endpoint = endpoint;
+		
 	}
 
 }

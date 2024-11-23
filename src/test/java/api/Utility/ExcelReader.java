@@ -38,7 +38,7 @@ public class ExcelReader {
             
             programDataList.add(programData);
             
-            System.out.println("Loaded Row: " + row.getCell(0).getStringCellValue());
+            //System.out.println("Loaded Row: " + row.getCell(0).getStringCellValue());
         }
 
         workbook.close();
