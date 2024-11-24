@@ -2,12 +2,8 @@ package api.Payload;
 
 import static io.restassured.RestAssured.given;
 
-import java.util.Map;
-
 import api.Pojo.CreateProgramRequestPojo;
-import api.Pojo.LoginRequestPojo;
 import api.Utility.CommonUtils;
-import io.restassured.http.ContentType;
 
 public class CreateProgramPayload extends CommonUtils {
 	

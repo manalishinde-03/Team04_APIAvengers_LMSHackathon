@@ -1,60 +1,78 @@
 package api.Request;
 
-import api.Pojo.LoginRequestPojo;
+import api.Pojo.CreateProgramRequestPojo;
 import api.Utility.CommonUtils;
+import api.Utility.ExcelReader;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class GetAllProgramRequest extends CommonUtils {
 
-    public static String adminToken;
     public Response response;
     private RequestSpecification request;
     int statusCode;
     String statusLine;
-    LoginRequestPojo loginRequestPojo = new LoginRequestPojo();
-    public RequestSpecification buildRequest() {
+    private final static HashMap<String, CreateProgramRequestPojo> testDataMap = new HashMap<>();
+
+    public RequestSpecification buildRequest(CreateProgramRequestPojo createProgramRequestPojo) {
         RestAssured.baseURI = baseURI;
 
         request = RestAssured.given()
-                .baseUri(baseURI)
-                .header("Content-Type", "application/json")
-                .auth().oauth2(getAdminToken());
+                .header("Content-Type", "application/json");
 
-        System.out.println("Request :" +request.log().all());
+        if(!createProgramRequestPojo.getAction().contains("NoAuth")) {
+            request.auth().oauth2(getAdminToken());
+        }
+
+        if (createProgramRequestPojo.getAction().contains("InvalidUri")) {
+            request.baseUri("https://lms-hackthon-oct24-3efc7e0df381.herokuapp.com/lmsInvalid");
+        } else {
+            request.baseUri(baseURI);
+        }
+
+        System.out.println("Request :" + request.log().all());
         return request;
-
     }
-    public Response sendRequest(String method, String endPoint) {
 
-        if ("GET".equalsIgnoreCase(method)) {
-            response = request.when().get(endPoint); //AllPrograms);
+    public Response sendGetRequest(CreateProgramRequestPojo createProgramRequestPojo) {
+
+        if (createProgramRequestPojo.getEndPoint().contains("{") && createProgramRequestPojo.getEndPoint().contains("}")) {
+            response = request.when().get(createProgramRequestPojo.getEndPoint(), getProgramID());
+        } else if(createProgramRequestPojo.getMethod().contains("Post")) {
+            response = request.when().post(createProgramRequestPojo.getEndPoint());
+        } else {
+            response = request.when().get(createProgramRequestPojo.getEndPoint());
         }
-        else if ("POST".equalsIgnoreCase(method)) {
-            response = request.when().post(endPoint); //AllPrograms);
-        }
+
 
         statusCode = response.getStatusCode();
         statusLine = response.getStatusLine();
 
-        System.out.println("Response :" +response.asPrettyString());
-        System.out.println("StatusCode :" +statusCode);
+        System.out.println("Response :" + response.asPrettyString());
+        System.out.println("StatusCode :" + statusCode);
 
         return response;
     }
 
-    public RequestSpecification buildNoAuthRequest() {
-        RestAssured.baseURI = baseURI;
+    public void loadTestData(String excelPath, String sheetName) throws Exception {
+        if (testDataMap.isEmpty()) {
+            List<CreateProgramRequestPojo> programDataList = ExcelReader.readTestData(excelPath, sheetName);
+            for (CreateProgramRequestPojo programData : programDataList) {
+                testDataMap.put(programData.getTestCaseId(), programData);
+            }
+        }
+    }
 
-        request = RestAssured.given()
-                .baseUri(baseURI)
-                .header("Content-Type", "application/json")
-                .auth().none();
-
-        System.out.println("Request :" +request.log().all());
-        return request;
-
+    // Method to get program data for a given TestCaseID
+    public CreateProgramRequestPojo getProgramData(String testCaseID) {
+        if (!testDataMap.containsKey(testCaseID)) {
+            throw new RuntimeException("Test case ID not found: " + testCaseID);
+        }
+        return testDataMap.get(testCaseID);
     }
 }
 

@@ -1,29 +1,18 @@
 package api.StepDefinitions;
 
-import static org.hamcrest.Matchers.equalTo;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.testng.Assert;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import api.Utility.ExcelUtil;
 import api.Payload.CreateProgramPayload;
 import api.Pojo.CreateProgramRequestPojo;
 import api.Request.CreateProgramRequest;
-import api.Request.UserLoginRequest;
 import api.Utility.CommonUtils;
-import api.Utility.ExcelReader;
-import api.Utility.ExcelUtilsOld;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.testng.Assert;
+
+import java.util.HashMap;
 
 public class ProgramCreateSteps extends CommonUtils {
 	
@@ -34,11 +23,11 @@ public class ProgramCreateSteps extends CommonUtils {
 	//public static String baseURI ;
 	String DataRequestBody;
 	ObjectMapper objectMapper = new ObjectMapper();
-	ExcelUtil excelRead = new ExcelUtil("src/test/resources/TestData/testData.xlsx");
+	//ExcelUtil excelRead = new ExcelUtil("src/test/resources/TestData/testData.xlsx");
 	
 	 private HashMap<String, CreateProgramRequestPojo> testDataMap = new HashMap<>();
 
-	    private static final String EXCEL_PATH = "./src/test/resources/TestData/testData.xlsx";
+	    public static final String EXCEL_PATH = "./src/test/resources/TestData/testData.xlsx";
 	    private static final String SHEET_NAME = "Program";
 	
 

@@ -28,22 +28,7 @@ public class CommonUtils {
 
 	public static String invalidpassword = config.getString("invalidpassword");
 
-	public static String loginEndPoint = config.getString("login");
-
-	public static String AllPrograms = config.getString("AllPrograms");
-
-	public static String invalidloginEndPoint = config.getString("invalidendpoint");
-
-	public static String invalidprogramendpoint = config.getString("invalidprogramendpoint");
-
-	public static String invalidlogoutEndPoint = config.getString("invalidlogouEP");
-
-	public static String logoutEndPoint = config.getString("logout");
-
 	public static String createProgramEndPoint = config.getString("program");
-
-
-
 
 	public static int getProgramID() {
 		System.out.println(">>>>>> in Get Program ID");

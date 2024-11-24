@@ -1,39 +1,32 @@
 package api.StepDefinitions;
 
+import api.Pojo.CreateProgramRequestPojo;
 import api.Request.GetAllProgramRequest;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 
+import static api.StepDefinitions.ProgramCreateSteps.EXCEL_PATH;
+
 public class GetAllProgramsStep {
 
     GetAllProgramRequest allProgramRequest = new GetAllProgramRequest();
     public Response response;
-
-    @Given("Admin creates GET Request for the LMS API")
-    public void admin_creates_get_request_for_the_lms_api() {
-        allProgramRequest.buildRequest();
+    @Given("Admin creates GET Program request for the LMS API for {string}")
+    public void adminCreatesGETProgramRequestForTheLMSAPIFor(String testCaseId) throws Exception {
+        allProgramRequest.loadTestData(EXCEL_PATH, "Program");
+        CreateProgramRequestPojo createProgramRequestPojo = allProgramRequest.getProgramData(testCaseId);
+        allProgramRequest.buildRequest(createProgramRequestPojo);
     }
 
-    @When("Admin sends {string} HTTPS Request with endpoint {string}")
-    public void admin_calls_post_https_method_with_valid_endpoint(String method, String endPoint) {
-        response = allProgramRequest.sendRequest(method, endPoint);
+    @When("Admin sends GET request with endpoint for {string}")
+    public void adminSendsGETRequestWithEndpointFor(String testCaseId) {
+        response = allProgramRequest.sendGetRequest(allProgramRequest.getProgramData(testCaseId));
     }
 
-    @Then("Admin receives {int} {string} Status.")
-    public void adminReceivesStatus(int code, String status) {
-        response.then().statusCode(code);
+    @Then("Admin receives {string} status.")
+    public void adminReceivesStatus(String code) {
+        allProgramRequest.response.then().assertThat().statusCode(Integer.parseInt(code));
     }
-
-    @Given("Admin creates POST Request for the LMS API")
-    public void adminCreatesPOSTRequestForTheLMSAPI() {
-        allProgramRequest.buildRequest();
-    }
-
-    @Given("Admin creates GET Request without Authorization")
-    public void adminCreatesGETRequestWithoutAuthorization() {
-        allProgramRequest.buildNoAuthRequest();
-    }
-
 }
