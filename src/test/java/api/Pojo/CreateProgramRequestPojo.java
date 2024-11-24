@@ -7,8 +7,10 @@ public class CreateProgramRequestPojo {
 	private String programDescription;
 	private String programName;
 	private String programStatus;
+
 	@JsonIgnore
 	private String endPoint;
+
 	@JsonIgnore
 	private String testCaseId;
 	@JsonIgnore

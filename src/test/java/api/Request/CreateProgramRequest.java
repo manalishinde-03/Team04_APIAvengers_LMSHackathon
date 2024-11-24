@@ -1,17 +1,36 @@
 package api.Request;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.Assert;
+import org.testng.Reporter;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import api.Payload.CreateProgramPayload;
+import api.Payload.UserLoginPayload;
 import api.Pojo.CreateProgramRequestPojo;
+import api.Pojo.LoginRequestPojo;
 import api.Utility.CommonUtils;
 import api.Utility.ExcelReader;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.module.jsv.JsonSchemaValidator;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -25,177 +44,168 @@ public class CreateProgramRequest extends CommonUtils {
 	public String programName;
 	public String programStatus;
 	CreateProgramRequestPojo createProgramPojo = new CreateProgramRequestPojo();
-	
-	 private HashMap<String, CreateProgramRequestPojo> testDataMap = new HashMap<>();
 
-	public RequestSpecification buildRequest() {
-		RestAssured.baseURI = baseURI;
-		createProgramPojo = CreateProgramPayload.createProgram();
+	private HashMap<String, CreateProgramRequestPojo> testDataMap = new HashMap<>();
 
-		request = RestAssured.given().baseUri(baseURI)
-				.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
-				.header("Content-Type", "application/json")
-				.body(createProgramPojo);
 
-		System.out.println("POST Program Request :" + request.log().all());
-		return request;
-
-	}
-
-	public RequestSpecification buildRequestWithMandatoryDetails() {
-		RestAssured.baseURI = baseURI;
-		createProgramPojo = CreateProgramPayload.createProgramWithMandatoryDetails();
-
-		request = RestAssured.given().baseUri(baseURI).header("Authorization", "Bearer " + CommonUtils.getAdminToken())
-				.header("Content-Type", "application/json").body(createProgramPojo);
-
-		System.out.println("POST Program Request :" + request.log().all());
-		return request;
-
-	}
-
-	public RequestSpecification buildRequest(String user) {
-		RestAssured.baseURI = baseURI;
-		createProgramPojo = CreateProgramPayload.createProgram();
-		switch (user) {
-
-		case "Admin":
-			request = RestAssured.given().header("Authorization", "Bearer " + CommonUtils.getAdminToken())
-					.header("Content-Type", "application/json");
-			break;
-		case "NoAuth":
-			request = RestAssured.given().header("Authorization", "No Auth").header("Content-Type", "application/json");
-			break;
-		default:
-			throw new IllegalArgumentException("Unsupported user type: " + user);
+	public void loadTestData(String excelPath, String sheetName) throws Exception {
+		if (testDataMap.isEmpty()) {
+			List<CreateProgramRequestPojo> programDataList = ExcelReader.readTestData(excelPath, sheetName);
+			for (CreateProgramRequestPojo programData : programDataList) {
+				testDataMap.put(programData.getTestCaseId(), programData);
+			}
 		}
-		return request;
 	}
 
-	public Response sendRequest() {
-
-		response = request.when().post(createProgramEndPoint);
-
-		statusCode = response.getStatusCode();
-		statusLine = response.getStatusLine();
-
-		programID = response.jsonPath().getInt("programId");
-		programName = response.jsonPath().getString("programName");
-		programStatus = response.jsonPath().getString("programStatus");
-
-		System.out.println("Response :" + response.asPrettyString());
-		System.out.println("status Code :" + statusCode);
-		System.out.println("status Line :" + statusLine);
-		programName = response.jsonPath().getString("programName");
-		programStatus = response.jsonPath().getString("programStatus");
-
-		CommonUtils.setProgramID(programID);
-		CommonUtils.setProgramName(programName);
-		CommonUtils.setProgramStatus(programStatus);
-
-		return response;
+	// Method to get program data for a given TestCaseID
+	public CreateProgramRequestPojo getProgramData(String testCaseID) {
+		if (!testDataMap.containsKey(testCaseID)) {
+			throw new RuntimeException("Test case ID not found: " + testCaseID);
+		}
+		return testDataMap.get(testCaseID);
 	}
 
-	public Response sendRequestWithNoAuth() {
+//	    public void printTestData() {
+//	        testDataMap.forEach((key, value) -> {
+//	            System.out.println("TestCaseID: " + key + ", ProgramName: " + value.getProgramName() +
+//	                               ", ProgramDescription: " + value.getProgramDescription());
+//	        });
+//	    }
 
-		response = request.when().post(createProgramEndPoint);
+	public Response sendPostRequest(String testCaseID) throws Exception {
 
-		statusCode = response.getStatusCode();
-		statusLine = response.getStatusLine();
+		CreateProgramRequestPojo programData = getProgramData(testCaseID);
+		String endpoint = programData.getEndpoint();
 
-		return response;
-	}
+		String jsonBody = new ObjectMapper().writeValueAsString(programData);
+		System.out.println("JSON for TestCaseID " + testCaseID + ": " + jsonBody);
 
-	public RequestSpecification buildRequestExcel() {
+		System.out.println("Using Endpoint: " + endpoint);
 
-		RestAssured.baseURI = baseURI;
-		createProgramPojo = CreateProgramPayload.createProgram();
-
-		request = RestAssured.given().baseUri(baseURI)
-				.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+		RestAssured.baseURI = CommonUtils.baseURI;
+		Response response = RestAssured
+				.given()
 				.header("Content-Type", "application/json")
-				.body(createProgramPojo);
+				.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+				 .body(programData)
+				.post(endpoint);
 
-		System.out.println("POST Program Request :" + request.log().all());
-
-		return request;
-
-	}
-
-	public Response sendRequestExcel() {
-
-		response = request.when().post(createProgramEndPoint);
-
-		statusCode = response.getStatusCode();
-		statusLine = response.getStatusLine();
-
-		programID = response.jsonPath().getInt("programId");
-		programName = response.jsonPath().getString("programName");
+		
+		if(response.getStatusCode()==201) {
+			
+			JsonPath jsonPath = response.jsonPath();
+			if (jsonPath.get("programId") != null) {
+				programID = jsonPath.getInt("programId");
+				System.out.println("Program ID from response: " + programID);
+				
+				CommonUtils.setProgramID(programID); 
+				
+			} else {
+				System.out.println("No Program ID found in the response.");
+			}
+			
+			
+			programName = response.jsonPath().getString("programName");
+			System.out.println("Program Name from response: " + programName);
+			CommonUtils.setProgramName(programName);
+			
+		}
+		
 		programStatus = response.jsonPath().getString("programStatus");
 
-		System.out.println("Response :" + response.asPrettyString());
-		System.out.println("status Code :" + statusCode);
-		System.out.println("status Line :" + statusLine);
-		programName = response.jsonPath().getString("programName");
-		programStatus = response.jsonPath().getString("programStatus");
-
-		CommonUtils.setProgramID(programID);
-		CommonUtils.setProgramName(programName);
-		CommonUtils.setProgramStatus(programStatus);
+		System.out.println("Response Status Code: " + response.getStatusCode());
+		System.out.println("Response Body: " + response.getBody().asPrettyString());
 
 		return response;
 	}
 
 	
-	    public void loadTestData(String excelPath, String sheetName) throws Exception {
-	        if (testDataMap.isEmpty()) {
-	            List<CreateProgramRequestPojo> programDataList = ExcelReader.readTestData(excelPath, sheetName);
-	            for (CreateProgramRequestPojo programData : programDataList) {
-	                testDataMap.put(programData.getTestCaseId(), programData);
-	            }
-	        }
-	    }
+//Generic SendRequest method
 
-	    // Method to get program data for a given TestCaseID
-	    public CreateProgramRequestPojo getProgramData(String testCaseID) {
-	        if (!testDataMap.containsKey(testCaseID)) {
-	            throw new RuntimeException("Test case ID not found: " + testCaseID);
-	        }
-	        return testDataMap.get(testCaseID);
-	    }
+	public Response sendPostRequestGeneric(String endpoint, Object requestBody, Map<String, String> headers,
+			int expectedStatusCode) {
+		System.out.println("Sending POST request to endpoint: " + endpoint);
 
-	    public void printTestData() {
-	        testDataMap.forEach((key, value) -> {
-	            System.out.println("TestCaseID: " + key + ", ProgramName: " + value.getProgramName() +
-	                               ", ProgramDescription: " + value.getProgramDescription());
-	        });
-	    }
+		// Build the request
+		RestAssured.baseURI = CommonUtils.baseURI;
+		RequestSpecification request = RestAssured
+				.given();
+		if (headers != null) {
+			request.headers(headers);
+		}
+		if (requestBody != null) {
+			request.body(requestBody);
+		}
+		
+		response = request
+				.post(endpoint);
 
-	 
-	    public Response sendPostRequest(String testCaseID) throws Exception {
-	        CreateProgramRequestPojo programData = getProgramData(testCaseID);
+		System.out.println("Response Status Code: " + response.getStatusCode());
+		System.out.println("Response Body: " + response.getBody().asPrettyString());
 
-	        String jsonBody = new ObjectMapper().writeValueAsString(programData);
-	        System.out.println("JSON for TestCaseID " + testCaseID + ": " + jsonBody);
 
-	        RestAssured.baseURI =CommonUtils.baseURI;
-	        Response response = RestAssured.given()
-	                .header("Content-Type", "application/json")
-	                .header("Authorization", "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0QGdtYWlsLmNvbSIsImlhdCI6MTczMjI2MDc5MSwiZXhwIjoxNzMyMjg5NTkxfQ.93kwb_4sG3HOy3wr6YWWiHqpKKfSB153RqgIVttbcO1i0pF4Polh8od6zn27slYyyz8RFO2bdqjwnhDlZC2Vjg")
-	                .body(programData)
-	                .post(CommonUtils.createProgramEndPoint);
+		return response;
+	}
 
-	        System.out.println("Response Status Code: " + response.getStatusCode());
-	        System.out.println("Response Body: " + response.getBody().asString());
-	        
-	        programID = response.jsonPath().getInt("programId");
-			programName = response.jsonPath().getString("programName");
-			programStatus = response.jsonPath().getString("programStatus");
-			
-			CommonUtils.setProgramID(programID);
-			CommonUtils.setProgramName(programName);
-			CommonUtils.setProgramStatus(programStatus);
+	public Response sendhttpMethod(String httpReq, String testCaseID) {
 
-	        return response;
-	    }
+		CreateProgramRequestPojo programData = getProgramData(testCaseID);
+		String endpoint = programData.getEndpoint();
+
+		
+		RestAssured.baseURI = CommonUtils.baseURI;
+		System.out.println(" Invalid Method :" +httpReq);
+		
+		switch(httpReq.toUpperCase()) {
+		
+		case "GET" :
+			response = RestAssured
+			.given().header("Content-Type", "application/json")
+			.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+			.get(endpoint);
+			 break;
+		
+		case "PUT" :
+		response = RestAssured
+		.given().header("Content-Type", "application/json")
+		.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+		.put(endpoint);
+		break;
+		 default:
+	            throw new IllegalArgumentException("Unsupported HTTP method: " + httpReq);
+	}
+
+		System.out.println("Response Status Code: " + response.getStatusCode());
+		System.out.println("Response Body: " + response.getBody().asPrettyString());
+		
+		return response;
+	}
+	
+	public Response sendPUTRequest(String testCaseID) throws Exception {
+
+		CreateProgramRequestPojo programData = getProgramData(testCaseID);
+		String endpoint = programData.getEndpoint();
+		String endpointByName = endpoint.replace("{programName}", CommonUtils.getProgramName().get(0));
+
+		System.out.println("endpointByName >>>>> "+endpointByName);
+		String jsonBody = new ObjectMapper().writeValueAsString(programData);
+		System.out.println("JSON for TestCaseID " + testCaseID + ": " + jsonBody);
+
+		System.out.println("Using Endpoint: " + endpoint);
+
+		RestAssured.baseURI = CommonUtils.baseURI;
+		Response response = RestAssured
+				.given()
+				.header("Content-Type", "application/json")
+				.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+				 .body(programData)
+				.put(endpointByName);
+
+		System.out.println("Response Status Code: " + response.getStatusCode());
+		System.out.println("Response Body: " + response.getBody().asPrettyString());
+
+		return response;
+	}
+	
+
 }
