@@ -180,5 +180,32 @@ public class CreateProgramRequest extends CommonUtils {
 		
 		return response;
 	}
+	
+	public Response sendPUTRequest(String testCaseID) throws Exception {
+
+		CreateProgramRequestPojo programData = getProgramData(testCaseID);
+		String endpoint = programData.getEndpoint();
+		String endpointByName = endpoint.replace("{programName}", CommonUtils.getProgramName().get(0));
+
+		System.out.println("endpointByName >>>>> "+endpointByName);
+		String jsonBody = new ObjectMapper().writeValueAsString(programData);
+		System.out.println("JSON for TestCaseID " + testCaseID + ": " + jsonBody);
+
+		System.out.println("Using Endpoint: " + endpoint);
+
+		RestAssured.baseURI = CommonUtils.baseURI;
+		Response response = RestAssured
+				.given()
+				.header("Content-Type", "application/json")
+				.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+				 .body(programData)
+				.put(endpointByName);
+
+		System.out.println("Response Status Code: " + response.getStatusCode());
+		System.out.println("Response Body: " + response.getBody().asPrettyString());
+
+		return response;
+	}
+	
 
 }
