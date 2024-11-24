@@ -28,8 +28,8 @@ Feature: Create Program Module
     Examples: 
       | TestCaseID      | ExpectedStatusCode |
       | POST_PROGRAM_01 |                201 |
-      | POST_PROGRAM_02 |                400 |
-      | POST_PROGRAM_03 |                201 |
+      | POST_PROGRAM_02 |                201 |
+      | POST_PROGRAM_03 |                400 |
 
   @TC2
   Scenario Outline: Validate API response for creating a program with No Auth
@@ -83,3 +83,13 @@ Feature: Create Program Module
       | POST_PROGRAM_08 |                400 |
       | POST_PROGRAM_09 |                400 |
       | POST_PROGRAM_10 |                400 |
+      
+      @TC7
+  Scenario Outline: Validate API response for updating program with valid request body
+    Given Admin creates PUT request body for "<TestCaseID>"
+    When Admin sends PUT request with valid request body for "<TestCaseID>"
+    Then Response status code should be "<ExpectedStatusCode>"
+
+    Examples: 
+      | TestCaseID      | ExpectedStatusCode |
+      | PUT_PROGRAM_01|                200 |

@@ -43,7 +43,7 @@ public class ProgramCreateSteps extends CommonUtils {
 	@Then("Admin receives {int} Created Status with response body")
 	public void admin_receives_created_status_with_response_body(int statusCode) {
 		response.then().assertThat().statusCode(statusCode);
-		System.out.println("Program ID :" +CommonUtils.getProgramID1());
+		System.out.println("Program ID :" +CommonUtils.getProgramID());
 	}
 
 	@Then("Admin receives {int} Unauthorized Status code")
@@ -161,12 +161,31 @@ public class ProgramCreateSteps extends CommonUtils {
 		
 	    }
 	 
+	 @Given("Admin creates PUT request body for {string}")
+	 public void admin_creates_put_request_body_for(String testCaseID) throws Exception {
+	    // Load test data
+        createProgramRequest.loadTestData(EXCEL_PATH, SHEET_NAME);
+
+        CreateProgramRequestPojo programData = createProgramRequest.getProgramData(testCaseID);
+        
+        System.out.println("Loaded Test Data for TestCaseID " + testCaseID + ": " +
+                           programData.getProgramName() + ", " + programData.getProgramDescription());
+	 }
+	 
+	 @When("Admin sends PUT request with valid request body for {string}")
+	 public void admin_sends_put_request_to_create_a_program(String testCaseID) throws Exception {
+		
+		 response = createProgramRequest.sendPUTRequest(testCaseID);
+	
+	    }
+	 
 	 @Then("Response status code should be {string}")
 	 public void response_status_code_should_be(String expectedStatusCode) {
 	     
 		 
 		 Assert.assertEquals(response.getStatusCode(),Integer.parseInt(expectedStatusCode));
-		 System.out.println("Program ID from Common Utils :" +CommonUtils.getProgramID1());
+		 //System.out.println(">>>>>>>Program Name1 from Common Utils :" +CommonUtils.getProgramName());
+		 //System.out.println(">>>>>>>Program Name2 from Common Utils :" +CommonUtils.getProgramName().get(1));
 	 }
 	 
 }
