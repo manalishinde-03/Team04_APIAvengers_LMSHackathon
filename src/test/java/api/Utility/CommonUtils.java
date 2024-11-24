@@ -12,22 +12,12 @@ public class CommonUtils {
 	public static String programName;
 	public static String programStatus;
 
-
-
 	@Getter
 	@Setter
 	public static Integer batchID;
 	public static String batchName;
-
 	public static ResourceBundle config = ResourceBundle.getBundle("config");
-	
 	public static String baseURI = config.getString("baseUrl");
-
-	public static String userLoginEmailId = config.getString("userLoginEmailId");
-	public static String password =  config.getString("password");
-
-	public static String invalidpassword = config.getString("invalidpassword");
-
 	public static String createProgramEndPoint = config.getString("program");
 
 	public static int getProgramID() {
