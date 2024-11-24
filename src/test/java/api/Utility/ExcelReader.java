@@ -24,13 +24,7 @@ public class ExcelReader {
             Row row = sheet.getRow(i);
 
             CreateProgramRequestPojo programData = new CreateProgramRequestPojo();
-			/*
-			 * programData.setTestCaseId(row.getCell(0).getStringCellValue());
-			 * programData.setProgramName(row.getCell(3).getStringCellValue());
-			 * programData.setProgramStatus(row.getCell(1).getStringCellValue());
-			 * programData.setProgramDescription(row.getCell(2).getStringCellValue());
-			 * programData.setExpectedStatusCode(row.getCell(5).getStringCellValue());
-			 */
+		
             programData.setTestCaseId(getCellValueAsString(row.getCell(0)));
             programData.setProgramName(getCellValueAsString(row.getCell(1)));
             programData.setProgramStatus(getCellValueAsString(row.getCell(2)));
