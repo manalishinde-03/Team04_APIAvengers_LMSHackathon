@@ -6,23 +6,23 @@ Background:
 
  Given Admin creates GET Request
  
-  @GetAllRequest
+  @GetAllListRequest
   Scenario: Check if admin able to retrieve all classes  with valid Endpoint
   When Admin sends HTTPS Request with endpoint for getAllclass
   Then Admin receives 200 OK Status with response body for getAllclass                                                               
   
   
-  @GetAllRequest
+  @GetAllListRequest
   Scenario: Check if admin able to retrieve all  classes with invalid Endpoint
   When Admin sends HTTPS Request with invalid endpoint for getAllclass
   Then Admin receives 404 status with error message Not Found for getAllclass
   
-  @GetAllRequest
+  @GetAllListRequest
   Scenario: Check if admin able to retrieve all  classes with invalid method for getAllclass
   When Admin sends HTTPS Request with invalid method for getAllclass
   Then Admin receives 405 Method not allowed status visible for getAllclass
   
-  @GetAllRequest
+  @GetAllListRequest
   Scenario: Check if admin able to retrieve all classes without Authorization
   When Admin sends HTTPS Request without authorization for getAllclass 
   Then Admin receives 401 status with error message Unauthorized for getAllclass 
