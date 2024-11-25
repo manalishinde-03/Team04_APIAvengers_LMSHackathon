@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,31 @@ public class CreateProgramRequest extends CommonUtils {
 
 	private HashMap<String, CreateProgramRequestPojo> testDataMap = new HashMap<>();
 
+	  public RequestSpecification buildRequest(CreateProgramRequestPojo createProgramRequestPojo) {
+	        RestAssured.baseURI = baseURI;
+	        
+	        System.out.println(">>>>> Value from Action column :" +createProgramRequestPojo.getAction());
+	        System.out.println(">>>>> Value from Method column :" +createProgramRequestPojo.getMethod());
+
+	        request = RestAssured.given()
+	                .header("Content-Type", "application/json");
+
+	        if(!createProgramRequestPojo.getAction().contains("NoAuth")) {
+	           // request.auth().oauth2(getAdminToken());
+	        	
+	        	request.header("Authorization", "Bearer " + CommonUtils.getAdminToken());
+	            System.out.println(">>Received auth token : "+getAdminToken());
+	        }
+
+	        if (createProgramRequestPojo.getAction().contains("InvalidUri")) {
+	            request.baseUri("https://lms-hackthon-oct24-3efc7e0df381.herokuapp.com/lmsInvalid");
+	        } else {
+	            request.baseUri(baseURI);
+	        }
+
+	        System.out.println("Request :" + request.log().all());
+	        return request;
+	    }
 
 	public void loadTestData(String excelPath, String sheetName) throws Exception {
 		if (testDataMap.isEmpty()) {
@@ -65,20 +91,10 @@ public class CreateProgramRequest extends CommonUtils {
 		return testDataMap.get(testCaseID);
 	}
 
-//	    public void printTestData() {
-//	        testDataMap.forEach((key, value) -> {
-//	            System.out.println("TestCaseID: " + key + ", ProgramName: " + value.getProgramName() +
-//	                               ", ProgramDescription: " + value.getProgramDescription());
-//	        });
-//	    }
-
 	public Response sendPostRequest(String testCaseID) throws Exception {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
 		String endpoint = programData.getEndpoint();
-
-		String jsonBody = new ObjectMapper().writeValueAsString(programData);
-		System.out.println("JSON for TestCaseID " + testCaseID + ": " + jsonBody);
 
 		System.out.println("Using Endpoint: " + endpoint);
 
@@ -181,18 +197,15 @@ public class CreateProgramRequest extends CommonUtils {
 		return response;
 	}
 	
-	public Response sendPUTRequest(String testCaseID) throws Exception {
+	//Method overloading
+	public Response sendPUTRequest(int progIndex,String testCaseID) throws Exception {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
 		String endpoint = programData.getEndpoint();
-		String endpointByName = endpoint.replace("{programName}", CommonUtils.getProgramName().get(0));
+		String endpointByName = endpoint.replace("{programName}", CommonUtils.getProgramName().get(progIndex));
 
 		System.out.println("endpointByName >>>>> "+endpointByName);
-		String jsonBody = new ObjectMapper().writeValueAsString(programData);
-		System.out.println("JSON for TestCaseID " + testCaseID + ": " + jsonBody);
-
-		System.out.println("Using Endpoint: " + endpoint);
-
+		
 		RestAssured.baseURI = CommonUtils.baseURI;
 		Response response = RestAssured
 				.given()
@@ -207,5 +220,145 @@ public class CreateProgramRequest extends CommonUtils {
 		return response;
 	}
 	
+	public Response sendPUTRequest(String testCaseID) throws Exception {
 
+		CreateProgramRequestPojo programData = getProgramData(testCaseID);
+		
+		System.out.println(">>>>>>>>>> Prog name - " +programData.getProgramName());
+		String endpoint = programData.getEndpoint();
+		String endpointByName = endpoint.replace("{programName}", programData.getProgramName());
+
+		RestAssured.baseURI = CommonUtils.baseURI;
+		Response response = RestAssured
+				.given()
+				.header("Content-Type", "application/json")
+				//.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+				.header("Authorization", "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0QGdtYWlsLmNvbSIsImlhdCI6MTczMjQzMjY3NCwiZXhwIjoxNzMyNDYxNDc0fQ.tfgrK_BIxiGDro0QddzQn4JA0lL3nnvOlo4bZvN4W65M-d4dynIY9kcsgf-3RCJW68RZAP9siDq1SFdIjcfq2Q")
+				 .body(programData)
+				.put(endpointByName);
+
+		System.out.println("Response Status Code: " + response.getStatusCode());
+		System.out.println("Response Body: " + response.getBody().asPrettyString());
+
+		return response;
+	}
+	
+	public Response sendPUTRequestNoAuth(String testCaseID) throws Exception {
+
+		CreateProgramRequestPojo programData = getProgramData(testCaseID);
+		
+		String endpoint = programData.getEndpoint();
+		String endpointByName = endpoint.replace("{programName}", programData.getProgramName());
+
+		RestAssured.baseURI = CommonUtils.baseURI;
+		Response response = RestAssured
+				.given()
+				.header("Content-Type", "application/json")
+				//.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+				.header("Authorization", "No Auth")
+				 .body(programData)
+				.put(endpointByName);
+
+		System.out.println("Response Status Code: " + response.getStatusCode());
+		System.out.println("Response Body: " + response.getBody().asPrettyString());
+
+		return response;
+	}
+	
+	public Response sendPUTRequestByID(int progIndex,String testCaseID) throws Exception {
+
+		CreateProgramRequestPojo programData = getProgramData(testCaseID);
+			String programId = CommonUtils.getProgramID().get(progIndex).toString();
+			String endpoint = programData.getEndpoint();
+			String endpointByID = endpoint.replace("{programId}", programId);
+
+			System.out.println("endpointByID >>>>> "+endpointByID);
+		
+		RestAssured.baseURI = CommonUtils.baseURI;
+		Response response = RestAssured
+				.given()
+				.header("Content-Type", "application/json")
+				.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+				 .body(programData)
+				.put(endpointByID);
+
+		System.out.println("Response Status Code: " + response.getStatusCode());
+		System.out.println("Response Body: " + response.getBody().asPrettyString());
+
+		return response;
+		
+	}
+	
+	public Response sendPUTRequestByIDInvalidTC(int progIndex,String testCaseID) throws Exception {
+
+		CreateProgramRequestPojo programData = getProgramData(testCaseID);
+
+		        if (programData.getEndpoint().contains("{") && programData.getEndpoint().contains("}")) {
+		            
+		        	System.out.println("***************>> in 1st if ...........");
+		        	response = request
+		            		.when()
+		            		.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+		            		.body(programData)
+		            		.put(programData.getEndpoint(), getProgramID().get(progIndex));
+		        } else 
+		        	
+		        	if(programData.getMethod().contains("Get")) {
+		        	System.out.println("***************>> in 2nd if ...........");
+		            response = request
+		            		.when()
+		            		.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+		            		.body(programData)
+		            		.get(programData.getEndpoint());
+		        } else {
+		        	
+		        	System.out.println("***************>> in 3rd if ...........");
+		            response = request
+		            		.when()
+		            		.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+		            		.body(programData)
+		            		.put(programData.getEndpoint());
+		        }
+
+
+		        statusCode = response.getStatusCode();
+		        statusLine = response.getStatusLine();
+
+		        System.out.println("Response :" + response.asPrettyString());
+		        System.out.println("StatusCode :" + statusCode);
+
+		        return response;
+		       
+		    }
+	
+	public Response sendPUTRequestByIDInvalidMethod(int progIndex,String testCaseID) throws Exception {
+
+		CreateProgramRequestPojo programData = getProgramData(testCaseID);
+
+		        if (programData.getEndpoint().contains("{") && programData.getEndpoint().contains("}")) {
+		        	
+		        	if(programData.getMethod().contains("Get")) {
+			        	System.out.println("***************>> in if ...........");
+			            response = request
+			            		.when()
+			            		.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+			            		.body(programData)
+			            		.get(programData.getEndpoint(),getProgramID().get(progIndex));
+			        }
+		            
+		        }
+
+		        statusCode = response.getStatusCode();
+		        statusLine = response.getStatusLine();
+
+		        System.out.println("Response :" + response.asPrettyString());
+		        System.out.println("StatusCode :" + statusCode);
+
+		        return response;
+		       
+		    }
+		
+	
+	
+	
 }

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,15 +37,16 @@ public class ProgramCreateSteps extends CommonUtils {
 	
 	 private HashMap<String, CreateProgramRequestPojo> testDataMap = new HashMap<>();
 
-	    private static final String EXCEL_PATH = CommonUtils.excelFilePath;
+	    public static final String EXCEL_PATH = CommonUtils.excelFilePath;
 	    private static final String SHEET_NAME = "Program";
 	
+	    private static final Logger logger = LogManager.getLogger(ProgramCreateSteps.class);
 
 	
 	@Then("Admin receives {int} Created Status with response body")
 	public void admin_receives_created_status_with_response_body(int statusCode) {
 		response.then().assertThat().statusCode(statusCode);
-		System.out.println("Program ID :" +CommonUtils.getProgramID());
+		logger.info("Program ID :" +CommonUtils.getProgramID());
 	}
 
 	@Then("Admin receives {int} Unauthorized Status code")
@@ -170,22 +173,81 @@ public class ProgramCreateSteps extends CommonUtils {
         
         System.out.println("Loaded Test Data for TestCaseID " + testCaseID + ": " +
                            programData.getProgramName() + ", " + programData.getProgramDescription());
+        createProgramRequest.buildRequest(programData);
+        
+	 }
+	 @Given("Admin sets an invalid base URI")
+	 public void admin_sets_invalid_base_uri() {
+	     RestAssured.baseURI = "http://invalid-base-uri.com";
+	     System.out.println("Base URI set to: " + RestAssured.baseURI);
 	 }
 	 
-	 @When("Admin sends PUT request with valid request body for {string}")
-	 public void admin_sends_put_request_to_create_a_program(String testCaseID) throws Exception {
+	 @When("Admin sends PUT request for {int} with valid request body for {string}")
+	 public void admin_sends_put_request_to_create_a_program(int progIndex,String testCaseID) throws Exception {
+		
+		 response = createProgramRequest.sendPUTRequest(progIndex,testCaseID);
+	
+	    }
+	 @When("Admin sends PUT request with invalid Program Name for {string}")
+	 public void admin_sends_put_request_invalidProgramName(String testCaseID) throws Exception {
 		
 		 response = createProgramRequest.sendPUTRequest(testCaseID);
 	
 	    }
 	 
+	 @When("Admin sends PUT request with No Auth for {string}")
+	 public void admin_sends_put_request_NOAuth(String testCaseID) throws Exception {
+		
+		 response = createProgramRequest.sendPUTRequestNoAuth(testCaseID);
+	
+	    }
+	 
+	 @When("Admin sends PUT request for {int} by Program ID for {string}")
+	 public void admin_sends_put_request_byProgId(int progIndex,String testCaseID) throws Exception {
+		
+		response = createProgramRequest.sendPUTRequestByID(progIndex,testCaseID);
+	
+	    }
+	 @When("Admin sends PUT request for {int} with invalid request body for {string}")
+	 public void admin_sends_put_request_invalidBaseURI(int progIndex,String testCaseID) throws Exception {
+		
+		 try {
+		response = createProgramRequest.sendPUTRequestByIDInvalidTC(progIndex,testCaseID);
+		
+		 }catch(Exception e) {
+			 System.err.println("Exception during PUT request: " + e.getMessage());
+		 }
+	
+	    }
+	 
+	 @When("Admin sends PUT request for {int} with invalid method for {string}")
+	 public void admin_sends_put_request_invalidMethod(int progIndex,String testCaseID) throws Exception {
+		
+		response = createProgramRequest.sendPUTRequestByIDInvalidMethod(progIndex,testCaseID);
+		
+	    }
+	 
+	 
 	 @Then("Response status code should be {string}")
 	 public void response_status_code_should_be(String expectedStatusCode) {
 	     
+		 if (this.response == null) {
+		        System.err.println("Response is null. No response received.");
+		        Assert.fail("Expected status code " + expectedStatusCode + ", but no response was received.");
+		    } else {
+		        int actualStatusCode = this.response.getStatusCode();
+		        Assert.assertEquals(actualStatusCode, Integer.parseInt(expectedStatusCode),
+		                "Expected status code does not match actual status code.");
+		    }
 		 
-		 Assert.assertEquals(response.getStatusCode(),Integer.parseInt(expectedStatusCode));
-		 //System.out.println(">>>>>>>Program Name1 from Common Utils :" +CommonUtils.getProgramName());
-		 //System.out.println(">>>>>>>Program Name2 from Common Utils :" +CommonUtils.getProgramName().get(1));
-	 }
-	 
+//		 if (response == null) {
+//		        System.err.println("Response is null.");
+//		        Assert.fail("Expected status code " + expectedStatusCode + " but no response received.");
+//		 }
+//		 
+//		 else{
+//		 Assert.assertEquals(response.getStatusCode(),Integer.parseInt(expectedStatusCode));
+//		 //System.out.println(">>>>>>>Program Name2 from Common Utils :" +CommonUtils.getProgramName().get(1));
+//		 	}
+	 } 
 }

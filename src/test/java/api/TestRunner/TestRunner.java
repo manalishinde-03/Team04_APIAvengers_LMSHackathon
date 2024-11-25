@@ -11,8 +11,11 @@ import io.cucumber.testng.CucumberOptions;
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
 				},
 		monochrome=false,  //console output color
-		features = {"src/test/resources/features/02programModule/programCreate.feature" }, //location of feature files
-		tags = "@TC4",
+		features = {"src/test/resources/features/01userLogin/userLogin.feature",
+				"src/test/resources/features/02programModule/01programCreate.feature",
+				"src/test/resources/features/02programModule/04programDelete.feature"}, //location of feature files
+		//features = {"src/test/resources/features/02programModule/programCreate.feature" }, //location of feature files
+		//tags = "@TC9",
 		glue={"api.StepDefinitions"}
 		
 		)

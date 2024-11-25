@@ -29,6 +29,8 @@ public class ExcelReader {
             programData.setProgramDescription(getCellValueAsString(row.getCell(3)));
             programData.setExpectedStatusCode(getCellValueAsString(row.getCell(4)));
             programData.setEndpoint(getCellValueAsString(row.getCell(5)));
+            programData.setAction(getCellValueAsString(row.getCell(6)));
+            programData.setMethod(getCellValueAsString(row.getCell(7)));
             
             programDataList.add(programData);
             
