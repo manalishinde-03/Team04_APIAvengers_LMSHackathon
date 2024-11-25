@@ -51,7 +51,9 @@ public class GetAllProgramRequest extends CommonUtils {
             response = request.when().get(createProgramRequestPojo.getEndPoint());
         }
 
-        if(createProgramRequestPojo.getAction().contains("validateSchemaProgram")) {
+        if(createProgramRequestPojo.getAction().contains("validateSchemaProgramArray")) {
+            response.then().assertThat().body(matchesJsonSchemaInClasspath("schemas/ArrayProgramDto.json"));
+        } else if(createProgramRequestPojo.getAction().contains("validateSchemaProgram")) {
             response.then().assertThat().body(matchesJsonSchemaInClasspath("schemas/ProgramDto.json"));
         }
 
