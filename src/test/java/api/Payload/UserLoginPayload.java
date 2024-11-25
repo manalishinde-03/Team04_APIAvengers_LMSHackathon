@@ -1,6 +1,5 @@
 package api.Payload;
 
-import api.Pojo.LoginRequestPojo;
 import api.Utility.CommonUtils;
 
 public class UserLoginPayload extends CommonUtils {

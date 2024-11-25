@@ -1,39 +1,17 @@
 package api.Request;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.testng.Assert;
-import org.testng.Reporter;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import api.Payload.CreateProgramPayload;
-import api.Payload.UserLoginPayload;
 import api.Pojo.CreateProgramRequestPojo;
-import api.Pojo.LoginRequestPojo;
 import api.Utility.CommonUtils;
 import api.Utility.ExcelReader;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+
 
 public class CreateProgramRequest extends CommonUtils {
 
@@ -94,7 +72,7 @@ public class CreateProgramRequest extends CommonUtils {
 	public Response sendPostRequest(String testCaseID) throws Exception {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
-		String endpoint = programData.getEndpoint();
+		String endpoint = programData.getEndPoint();
 
 		System.out.println("Using Endpoint: " + endpoint);
 
@@ -166,7 +144,7 @@ public class CreateProgramRequest extends CommonUtils {
 	public Response sendhttpMethod(String httpReq, String testCaseID) {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
-		String endpoint = programData.getEndpoint();
+		String endpoint = programData.getEndPoint();
 
 		
 		RestAssured.baseURI = CommonUtils.baseURI;
@@ -201,7 +179,7 @@ public class CreateProgramRequest extends CommonUtils {
 	public Response sendPUTRequest(int progIndex,String testCaseID) throws Exception {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
-		String endpoint = programData.getEndpoint();
+		String endpoint = programData.getEndPoint();
 		String endpointByName = endpoint.replace("{programName}", CommonUtils.getProgramName().get(progIndex));
 
 		System.out.println("endpointByName >>>>> "+endpointByName);
@@ -225,7 +203,7 @@ public class CreateProgramRequest extends CommonUtils {
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
 		
 		System.out.println(">>>>>>>>>> Prog name - " +programData.getProgramName());
-		String endpoint = programData.getEndpoint();
+		String endpoint = programData.getEndPoint();
 		String endpointByName = endpoint.replace("{programName}", programData.getProgramName());
 
 		RestAssured.baseURI = CommonUtils.baseURI;
@@ -247,7 +225,7 @@ public class CreateProgramRequest extends CommonUtils {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
 		
-		String endpoint = programData.getEndpoint();
+		String endpoint = programData.getEndPoint();
 		String endpointByName = endpoint.replace("{programName}", programData.getProgramName());
 
 		RestAssured.baseURI = CommonUtils.baseURI;
@@ -269,7 +247,7 @@ public class CreateProgramRequest extends CommonUtils {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
 			String programId = CommonUtils.getProgramID().get(progIndex).toString();
-			String endpoint = programData.getEndpoint();
+			String endpoint = programData.getEndPoint();
 			String endpointByID = endpoint.replace("{programId}", programId);
 
 			System.out.println("endpointByID >>>>> "+endpointByID);
@@ -293,14 +271,14 @@ public class CreateProgramRequest extends CommonUtils {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
 
-		        if (programData.getEndpoint().contains("{") && programData.getEndpoint().contains("}")) {
+		        if (programData.getEndPoint().contains("{") && programData.getEndPoint().contains("}")) {
 		            
 		        	System.out.println("***************>> in 1st if ...........");
 		        	response = request
 		            		.when()
 		            		.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
 		            		.body(programData)
-		            		.put(programData.getEndpoint(), getProgramID().get(progIndex));
+		            		.put(programData.getEndPoint(), getProgramID().get(progIndex));
 		        } else 
 		        	
 		        	if(programData.getMethod().contains("Get")) {
@@ -309,7 +287,7 @@ public class CreateProgramRequest extends CommonUtils {
 		            		.when()
 		            		.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
 		            		.body(programData)
-		            		.get(programData.getEndpoint());
+		            		.get(programData.getEndPoint());
 		        } else {
 		        	
 		        	System.out.println("***************>> in 3rd if ...........");
@@ -317,7 +295,7 @@ public class CreateProgramRequest extends CommonUtils {
 		            		.when()
 		            		.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
 		            		.body(programData)
-		            		.put(programData.getEndpoint());
+		            		.put(programData.getEndPoint());
 		        }
 
 
@@ -335,7 +313,7 @@ public class CreateProgramRequest extends CommonUtils {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
 
-		        if (programData.getEndpoint().contains("{") && programData.getEndpoint().contains("}")) {
+		        if (programData.getEndPoint().contains("{") && programData.getEndPoint().contains("}")) {
 		        	
 		        	if(programData.getMethod().contains("Get")) {
 			        	System.out.println("***************>> in if ...........");
@@ -343,7 +321,7 @@ public class CreateProgramRequest extends CommonUtils {
 			            		.when()
 			            		.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
 			            		.body(programData)
-			            		.get(programData.getEndpoint(),getProgramID().get(progIndex));
+			            		.get(programData.getEndPoint(),getProgramID().get(progIndex));
 			        }
 		            
 		        }

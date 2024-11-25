@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>2/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>3/34/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sun Nov 24 20:29:53 CST 2024</td>
+<td>Started on:</td><td>Sun Nov 24 22:10:45 CST 2024</td>
 </tr>
-<tr><td>Total time:</td><td>5 seconds (5400 ms)</td>
+<tr><td>Total time:</td><td>8 seconds (8544 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,16 +76,1020 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
+<td><div><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ALLUSERS_PROGRAM_22&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1360132116", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1360132116'><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ALLUSERS_PROGRAM_22&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program by ID", "Update Program Module"</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequestByID(CreateProgramRequest.java:249)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_byProgId(ProgramCreateSteps.java:202)
+	at ✽.Admin sends PUT request for 1 by Program ID for &quot;PUT_PROGRAM_ID_02&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:44)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1557955737", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1557955737'><pre>java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequestByID(CreateProgramRequest.java:249)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_byProgId(ProgramCreateSteps.java:202)
+	at ✽.Admin sends PUT request for 1 by Program ID for &quot;PUT_PROGRAM_ID_02&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:44)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program by ID with invalid Method", "Update Program Module"</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequestByIDInvalidMethod(CreateProgramRequest.java:324)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_invalidMethod(ProgramCreateSteps.java:220)
+	at ✽.Admin sends PUT request for 0 with invalid method for &quot;PUT_PROGRAM_ID_10&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:73)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1182586041", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1182586041'><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequestByIDInvalidMethod(CreateProgramRequest.java:324)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_invalidMethod(ProgramCreateSteps.java:220)
+	at ✽.Admin sends PUT request for 0 with invalid method for &quot;PUT_PROGRAM_ID_10&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:73)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User Login valid credential", "Get All Programs"</td>
+<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.ss.usermodel.Sheet.getLastRowNum()&quot; because &quot;sheet&quot; is null
+	at api.Utility.ExcelReader.readTestDataLoginLogout(ExcelReader.java:57)
+	at api.Request.UserLogInOutRequest.loadTestData(UserLogInOutRequest.java:71)
+	at api.StepDefinitions.UserLogInOutSteps.adminCreatesPOSTLoginRequestBodyFor(UserLogInOutSteps.java:21)
+	at ✽.Admin creates POST login request body for &quot;POST_LOGIN-01&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:6)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1285879650", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1285879650'><pre>java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.ss.usermodel.Sheet.getLastRowNum()&quot; because &quot;sheet&quot; is null
+	at api.Utility.ExcelReader.readTestDataLoginLogout(ExcelReader.java:57)
+	at api.Request.UserLogInOutRequest.loadTestData(UserLogInOutRequest.java:71)
+	at api.StepDefinitions.UserLogInOutSteps.adminCreatesPOSTLoginRequestBodyFor(UserLogInOutSteps.java:21)
+	at ✽.Admin creates POST login request body for &quot;POST_LOGIN-01&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:6)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
+<td><div><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ALLUSERS_PROGRAM_21&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1028695001", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1028695001'><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ALLUSERS_PROGRAM_21&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
+<td><div><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ALL_PROGRAM_12&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1047634424", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1047634424'><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ALL_PROGRAM_12&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for creating a program", "Create Program Module"</td>
+<td><div><pre>io.restassured.path.json.exception.JsonPathException: Failed to parse the JSON document
+	at io.restassured.path.json.JsonPath$ExceptionCatcher.invoke(JsonPath.java:1002)
+	at io.restassured.path.json.JsonPath$4.doParseWith(JsonPath.java:967)
+	at io.restassured.path.json.JsonPath$JsonParser.parseWith(JsonPath.java:1047)
+	at io.restassured.path.json.JsonPath.get(JsonPath.java:202)
+	at io.restassured.path.json.JsonPath.getString(JsonPath.java:352)
+	at api.Request.CreateProgramRequest.sendPostRequest(CreateProgramRequest.java:108)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_post_request_to_create_a_program(ProgramCreateSteps.java:78)
+	at ✽.Admin sends POST request to create a program for &quot;POST_PROGRAM_01&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/01programCreate.feature:7)
+Caused by: java.lang.IllegalArgumentException: The JSON input text should neither be null nor empty.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:263)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.path.json.ConfigurableJsonSlurper.parseText(ConfigurableJsonSlurper.groovy:80)
+	at io.restassured.path.json.JsonPath$4$1.method(JsonPath.java:965)
+	at io.restassured.path.json.JsonPath$ExceptionCatcher.invoke(JsonPath.java:1000)
+	at io.restassured.path.json.JsonPath$4.doParseWith(JsonPath.java:967)
+	at io.restassured.path.json.JsonPath$JsonParser.parseWith(JsonPath.java:1047)
+	at io.restassured.path.json.JsonPath.get(JsonPath.java:202)
+	at io.restassured.path.json.JsonPath.getString(JsonPath.java:352)
+	at api.Request.CreateProgramRequest.sendPostRequest(CreateProgramRequest.java:108)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_post_request_to_create_a_program(ProgramCreateSteps.java:78)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:62)
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:81)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:53)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:84)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:135)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:136)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:136)
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:132)
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1473247236", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1473247236'><pre>io.restassured.path.json.exception.JsonPathException: Failed to parse the JSON document
+	at io.restassured.path.json.JsonPath$ExceptionCatcher.invoke(JsonPath.java:1002)
+	at io.restassured.path.json.JsonPath$4.doParseWith(JsonPath.java:967)
+	at io.restassured.path.json.JsonPath$JsonParser.parseWith(JsonPath.java:1047)
+	at io.restassured.path.json.JsonPath.get(JsonPath.java:202)
+	at io.restassured.path.json.JsonPath.getString(JsonPath.java:352)
+	at api.Request.CreateProgramRequest.sendPostRequest(CreateProgramRequest.java:108)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_post_request_to_create_a_program(ProgramCreateSteps.java:78)
+	at ✽.Admin sends POST request to create a program for &quot;POST_PROGRAM_01&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/01programCreate.feature:7)
+Caused by: java.lang.IllegalArgumentException: The JSON input text should neither be null nor empty.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:263)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.path.json.ConfigurableJsonSlurper.parseText(ConfigurableJsonSlurper.groovy:80)
+	at io.restassured.path.json.JsonPath$4$1.method(JsonPath.java:965)
+	at io.restassured.path.json.JsonPath$ExceptionCatcher.invoke(JsonPath.java:1000)
+	at io.restassured.path.json.JsonPath$4.doParseWith(JsonPath.java:967)
+	at io.restassured.path.json.JsonPath$JsonParser.parseWith(JsonPath.java:1047)
+	at io.restassured.path.json.JsonPath.get(JsonPath.java:202)
+	at io.restassured.path.json.JsonPath.getString(JsonPath.java:352)
+	at api.Request.CreateProgramRequest.sendPostRequest(CreateProgramRequest.java:108)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_post_request_to_create_a_program(ProgramCreateSteps.java:78)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:62)
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:81)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:53)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:84)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:135)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:136)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:136)
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:132)
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</pre></div></td>
+<td>2</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program with valid request body", "Update Program Module"</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequest(CreateProgramRequest.java:183)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_to_create_a_program(ProgramCreateSteps.java:182)
+	at ✽.Admin sends PUT request for 1 with valid request body for &quot;PUT_PROGRAM_02&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:8)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1867459776", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1867459776'><pre>java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequest(CreateProgramRequest.java:183)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_to_create_a_program(ProgramCreateSteps.java:182)
+	at ✽.Admin sends PUT request for 1 with valid request body for &quot;PUT_PROGRAM_02&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:8)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program by ID with invalid body", "Update Program Module"</td>
+<td><div><pre>java.lang.AssertionError: Expected status code 401, but no response was received.
+	at org.testng.Assert.fail(Assert.java:111)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:230)
+	at ✽.Response status code should be &quot;401&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:58)
+</pre></div><a href='#' onClick='toggleBox("stack-trace320559316", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace320559316'><pre>java.lang.AssertionError: Expected status code 401, but no response was received.
+	at org.testng.Assert.fail(Assert.java:111)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:230)
+	at ✽.Response status code should be &quot;401&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:58)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
+<td><div><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ID_PROGRAM_17&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1604111628", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1604111628'><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ID_PROGRAM_17&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User Login valid credential", "User Login Module"</td>
+<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.ss.usermodel.Sheet.getLastRowNum()&quot; because &quot;sheet&quot; is null
+	at api.Utility.ExcelReader.readTestDataLoginLogout(ExcelReader.java:57)
+	at api.Request.UserLogInOutRequest.loadTestData(UserLogInOutRequest.java:71)
+	at api.StepDefinitions.UserLogInOutSteps.adminCreatesPOSTLoginRequestBodyFor(UserLogInOutSteps.java:21)
+	at ✽.Admin creates POST login request body for &quot;POST_LOGIN-01&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/01userLogin/userLogin.feature:6)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1342725532", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1342725532'><pre>java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.ss.usermodel.Sheet.getLastRowNum()&quot; because &quot;sheet&quot; is null
+	at api.Utility.ExcelReader.readTestDataLoginLogout(ExcelReader.java:57)
+	at api.Request.UserLogInOutRequest.loadTestData(UserLogInOutRequest.java:71)
+	at api.StepDefinitions.UserLogInOutSteps.adminCreatesPOSTLoginRequestBodyFor(UserLogInOutSteps.java:21)
+	at ✽.Admin creates POST login request body for &quot;POST_LOGIN-01&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/01userLogin/userLogin.feature:6)
+</pre></div></td>
+<td>1</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program by ID", "Update Program Module"</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequestByID(CreateProgramRequest.java:249)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_byProgId(ProgramCreateSteps.java:202)
+	at ✽.Admin sends PUT request for 0 by Program ID for &quot;PUT_PROGRAM_ID_03&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:44)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1925038057", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1925038057'><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequestByID(CreateProgramRequest.java:249)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_byProgId(ProgramCreateSteps.java:202)
+	at ✽.Admin sends PUT request for 0 by Program ID for &quot;PUT_PROGRAM_ID_03&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:44)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program by ID with invalid body", "Update Program Module"</td>
+<td><div><pre>java.lang.AssertionError: Expected status code 400, but no response was received.
+	at org.testng.Assert.fail(Assert.java:111)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:230)
+	at ✽.Response status code should be &quot;400&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:58)
+</pre></div><a href='#' onClick='toggleBox("stack-trace2033490785", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2033490785'><pre>java.lang.AssertionError: Expected status code 400, but no response was received.
+	at org.testng.Assert.fail(Assert.java:111)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:230)
+	at ✽.Response status code should be &quot;400&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:58)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program by ID with invalid body", "Update Program Module"</td>
+<td><div><pre>java.lang.AssertionError: Expected status code 400, but no response was received.
+	at org.testng.Assert.fail(Assert.java:111)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:230)
+	at ✽.Response status code should be &quot;400&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:58)
+</pre></div><a href='#' onClick='toggleBox("stack-trace895177676", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace895177676'><pre>java.lang.AssertionError: Expected status code 400, but no response was received.
+	at org.testng.Assert.fail(Assert.java:111)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:230)
+	at ✽.Response status code should be &quot;400&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:58)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
 <td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Delete program by ID with valid endpoint", "Delete Program Module"</td>
-<td><div><pre>java.lang.AssertionError: Expected status code 200, but no response was received.
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.DeleteProgramRequest.deleteProgramByIDReq(DeleteProgramRequest.java:82)
+	at api.StepDefinitions.DeleteProgramSteps.admin_sends_delete_request_for_with_program_id_and_valid_endpoint_for(DeleteProgramSteps.java:57)
+	at ✽.Admin sends DELETE request for 0 with programID and valid endpoint for &quot;DEL_PROGRAM_ID_01&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/04programDelete.feature:8)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1910670395", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1910670395'><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.DeleteProgramRequest.deleteProgramByIDReq(DeleteProgramRequest.java:82)
+	at api.StepDefinitions.DeleteProgramSteps.admin_sends_delete_request_for_with_program_id_and_valid_endpoint_for(DeleteProgramSteps.java:57)
+	at ✽.Admin sends DELETE request for 0 with programID and valid endpoint for &quot;DEL_PROGRAM_ID_01&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/04programDelete.feature:8)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
+<td><div><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ALL_PROGRAM_13&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div><a href='#' onClick='toggleBox("stack-trace559705792", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace559705792'><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ALL_PROGRAM_13&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program with valid request body", "Update Program Module"</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequest(CreateProgramRequest.java:183)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_to_create_a_program(ProgramCreateSteps.java:182)
+	at ✽.Admin sends PUT request for 0 with valid request body for &quot;PUT_PROGRAM_03&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:8)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1820661793", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1820661793'><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequest(CreateProgramRequest.java:183)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_to_create_a_program(ProgramCreateSteps.java:182)
+	at ✽.Admin sends PUT request for 0 with valid request body for &quot;PUT_PROGRAM_03&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:8)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.GetAllProgramRequest.sendGetRequest(GetAllProgramRequest.java:47)
+	at api.StepDefinitions.GetAllProgramsStep.adminSendsGETRequestWithEndpointFor(GetAllProgramsStep.java:32)
+	at ✽.Admin sends GET request with endpoint for &quot;GET_ID_PROGRAM_18&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:27)
+</pre></div><a href='#' onClick='toggleBox("stack-trace347696158", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace347696158'><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.GetAllProgramRequest.sendGetRequest(GetAllProgramRequest.java:47)
+	at api.StepDefinitions.GetAllProgramsStep.adminSendsGETRequestWithEndpointFor(GetAllProgramsStep.java:32)
+	at ✽.Admin sends GET request with endpoint for &quot;GET_ID_PROGRAM_18&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:27)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program with invalid Program Name", "Update Program Module"</td>
+<td><div><pre>java.lang.AssertionError: Expected status code does not match actual status code. expected [404] but found [401]
 	at org.testng.Assert.fail(Assert.java:111)
-	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:236)
-	at ✽.Response status code should be &quot;200&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/04programDelete.feature:9)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1214687061", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1214687061'><pre>java.lang.AssertionError: Expected status code 200, but no response was received.
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:1419)
+	at org.testng.Assert.assertEquals(Assert.java:1383)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:233)
+	at ✽.Response status code should be &quot;404&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:24)
+</pre></div><a href='#' onClick='toggleBox("stack-trace814473635", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace814473635'><pre>java.lang.AssertionError: Expected status code does not match actual status code. expected [404] but found [401]
 	at org.testng.Assert.fail(Assert.java:111)
-	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:236)
-	at ✽.Response status code should be &quot;200&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/04programDelete.feature:9)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:1419)
+	at org.testng.Assert.assertEquals(Assert.java:1383)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:233)
+	at ✽.Response status code should be &quot;404&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:24)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program with valid request body", "Update Program Module"</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequest(CreateProgramRequest.java:183)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_to_create_a_program(ProgramCreateSteps.java:182)
+	at ✽.Admin sends PUT request for 0 with valid request body for &quot;PUT_PROGRAM_04&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:8)
+</pre></div><a href='#' onClick='toggleBox("stack-trace161510409", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace161510409'><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequest(CreateProgramRequest.java:183)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_to_create_a_program(ProgramCreateSteps.java:182)
+	at ✽.Admin sends PUT request for 0 with valid request body for &quot;PUT_PROGRAM_04&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:8)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program with valid request body", "Update Program Module"</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequest(CreateProgramRequest.java:183)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_to_create_a_program(ProgramCreateSteps.java:182)
+	at ✽.Admin sends PUT request for 0 with valid request body for &quot;PUT_PROGRAM_07&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:8)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1335405617", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1335405617'><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequest(CreateProgramRequest.java:183)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_to_create_a_program(ProgramCreateSteps.java:182)
+	at ✽.Admin sends PUT request for 0 with valid request body for &quot;PUT_PROGRAM_07&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:8)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program by ID with invalid body", "Update Program Module"</td>
+<td><div><pre>java.lang.AssertionError: Expected status code does not match actual status code. expected [404] but found [401]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:1419)
+	at org.testng.Assert.assertEquals(Assert.java:1383)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:233)
+	at ✽.Response status code should be &quot;404&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:58)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1852790850", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1852790850'><pre>java.lang.AssertionError: Expected status code does not match actual status code. expected [404] but found [401]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:1419)
+	at org.testng.Assert.assertEquals(Assert.java:1383)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:233)
+	at ✽.Response status code should be &quot;404&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:58)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
+<td><div><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:263)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:53)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:171)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:194)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ALL_PROGRAM_TC11&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div><a href='#' onClick='toggleBox("stack-trace515370073", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace515370073'><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:263)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:53)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:171)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:194)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ALL_PROGRAM_TC11&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program by ID with invalid body", "Update Program Module"</td>
+<td><div><pre>java.lang.AssertionError: Expected status code 400, but no response was received.
+	at org.testng.Assert.fail(Assert.java:111)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:230)
+	at ✽.Response status code should be &quot;400&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:58)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1954051593", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1954051593'><pre>java.lang.AssertionError: Expected status code 400, but no response was received.
+	at org.testng.Assert.fail(Assert.java:111)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:230)
+	at ✽.Response status code should be &quot;400&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:58)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program with valid request body", "Update Program Module"</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequest(CreateProgramRequest.java:183)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_to_create_a_program(ProgramCreateSteps.java:182)
+	at ✽.Admin sends PUT request for 0 with valid request body for &quot;PUT_PROGRAM_01&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:8)
+</pre></div><a href='#' onClick='toggleBox("stack-trace772109879", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace772109879'><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequest(CreateProgramRequest.java:183)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_to_create_a_program(ProgramCreateSteps.java:182)
+	at ✽.Admin sends PUT request for 0 with valid request body for &quot;PUT_PROGRAM_01&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:8)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program by ID", "Update Program Module"</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequestByID(CreateProgramRequest.java:249)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_byProgId(ProgramCreateSteps.java:202)
+	at ✽.Admin sends PUT request for 0 by Program ID for &quot;PUT_PROGRAM_ID_01&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:44)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1023535667", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1023535667'><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequestByID(CreateProgramRequest.java:249)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_byProgId(ProgramCreateSteps.java:202)
+	at ✽.Admin sends PUT request for 0 by Program ID for &quot;PUT_PROGRAM_ID_01&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:44)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User Login valid credential", "User Login Module"</td>
+<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.ss.usermodel.Sheet.getLastRowNum()&quot; because &quot;sheet&quot; is null
+	at api.Utility.ExcelReader.readTestDataLoginLogout(ExcelReader.java:57)
+	at api.Request.UserLogInOutRequest.loadTestData(UserLogInOutRequest.java:71)
+	at api.StepDefinitions.UserLogInOutSteps.adminCreatesPOSTLoginRequestBodyFor(UserLogInOutSteps.java:21)
+	at ✽.Admin creates POST login request body for &quot;POST_LOGIN-02&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/01userLogin/userLogin.feature:6)
+</pre></div><a href='#' onClick='toggleBox("stack-trace162821120", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace162821120'><pre>java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.ss.usermodel.Sheet.getLastRowNum()&quot; because &quot;sheet&quot; is null
+	at api.Utility.ExcelReader.readTestDataLoginLogout(ExcelReader.java:57)
+	at api.Request.UserLogInOutRequest.loadTestData(UserLogInOutRequest.java:71)
+	at api.StepDefinitions.UserLogInOutSteps.adminCreatesPOSTLoginRequestBodyFor(UserLogInOutSteps.java:21)
+	at ✽.Admin creates POST login request body for &quot;POST_LOGIN-02&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/01userLogin/userLogin.feature:6)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
+<td><div><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ID_PROGRAM_15&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1854597758", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1854597758'><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ID_PROGRAM_15&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
+<td><div><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ID_PROGRAM_19&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1715623094", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1715623094'><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ID_PROGRAM_19&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User Login valid credential", "User Login Module"</td>
+<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.ss.usermodel.Sheet.getLastRowNum()&quot; because &quot;sheet&quot; is null
+	at api.Utility.ExcelReader.readTestDataLoginLogout(ExcelReader.java:57)
+	at api.Request.UserLogInOutRequest.loadTestData(UserLogInOutRequest.java:71)
+	at api.StepDefinitions.UserLogInOutSteps.adminCreatesPOSTLoginRequestBodyFor(UserLogInOutSteps.java:21)
+	at ✽.Admin creates POST login request body for &quot;POST_LOGIN-03&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/01userLogin/userLogin.feature:6)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1541298091", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1541298091'><pre>java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.ss.usermodel.Sheet.getLastRowNum()&quot; because &quot;sheet&quot; is null
+	at api.Utility.ExcelReader.readTestDataLoginLogout(ExcelReader.java:57)
+	at api.Request.UserLogInOutRequest.loadTestData(UserLogInOutRequest.java:71)
+	at api.StepDefinitions.UserLogInOutSteps.adminCreatesPOSTLoginRequestBodyFor(UserLogInOutSteps.java:21)
+	at ✽.Admin creates POST login request body for &quot;POST_LOGIN-03&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/01userLogin/userLogin.feature:6)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
+<td><div><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ID_PROGRAM_16&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div><a href='#' onClick='toggleBox("stack-trace2066710866", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2066710866'><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ID_PROGRAM_16&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program with valid request body", "Update Program Module"</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequest(CreateProgramRequest.java:183)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_to_create_a_program(ProgramCreateSteps.java:182)
+	at ✽.Admin sends PUT request for 0 with valid request body for &quot;PUT_PROGRAM_06&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:8)
+</pre></div><a href='#' onClick='toggleBox("stack-trace7876037", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace7876037'><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at api.Request.CreateProgramRequest.sendPUTRequest(CreateProgramRequest.java:183)
+	at api.StepDefinitions.ProgramCreateSteps.admin_sends_put_request_to_create_a_program(ProgramCreateSteps.java:182)
+	at ✽.Admin sends PUT request for 0 with valid request body for &quot;PUT_PROGRAM_06&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:8)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program by ID with invalid body", "Update Program Module"</td>
+<td><div><pre>java.lang.AssertionError: Expected status code 404, but no response was received.
+	at org.testng.Assert.fail(Assert.java:111)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:230)
+	at ✽.Response status code should be &quot;404&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:58)
+</pre></div><a href='#' onClick='toggleBox("stack-trace528469698", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace528469698'><pre>java.lang.AssertionError: Expected status code 404, but no response was received.
+	at org.testng.Assert.fail(Assert.java:111)
+	at api.StepDefinitions.ProgramCreateSteps.response_status_code_should_be(ProgramCreateSteps.java:230)
+	at ✽.Response status code should be &quot;404&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/03programUpdate.feature:58)
+</pre></div></td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
+<td><div><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ALLUSERS_PROGRAM_20&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
+</pre></div><a href='#' onClick='toggleBox("stack-trace776806962", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace776806962'><pre>java.lang.IllegalArgumentException: accessToken cannot be null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at io.restassured.internal.common.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:158)
+	at io.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at io.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:151)
+	at api.Request.GetAllProgramRequest.buildRequest(GetAllProgramRequest.java:30)
+	at api.StepDefinitions.GetAllProgramsStep.adminCreatesGETProgramRequestForTheLMSAPIFor(GetAllProgramsStep.java:27)
+	at ✽.Admin creates GET Program request for the LMS API for &quot;GET_ALLUSERS_PROGRAM_20&quot;(file:///C:/Users/manal_/git/Team04_APIAvengers_LMSHackathon/src/test/resources/features/02programModule/02programsGet.feature:26)
 </pre></div></td>
 <td>0</td>
 <td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
@@ -99,14 +1103,19 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for creating a program", "Create Program Module"</td>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
 <td></td>
-<td>1</td>
+<td>0</td>
 <td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
 <tr>
-<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User Login Scenario", "User Login Module"</td>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate API response for updating program with No Auth", "Update Program Module"</td>
 <td></td>
-<td>2</td>
+<td>0</td>
+<td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
+<tr>
+<td title='api.TestRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: api.TestRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User able to retrieve all programs with valid Endpoint", "Get All Programs"</td>
+<td></td>
+<td>0</td>
 <td>api.TestRunner.TestRunner@3af9c5b7</td></tr>
 </table><p>
 </body>

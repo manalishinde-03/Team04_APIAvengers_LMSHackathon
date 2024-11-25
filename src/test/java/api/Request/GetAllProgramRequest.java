@@ -10,6 +10,8 @@ import io.restassured.specification.RequestSpecification;
 import java.util.HashMap;
 import java.util.List;
 
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
 public class GetAllProgramRequest extends CommonUtils {
 
     public Response response;
@@ -40,21 +42,22 @@ public class GetAllProgramRequest extends CommonUtils {
 
     public Response sendGetRequest(CreateProgramRequestPojo createProgramRequestPojo) {
 
-        if (createProgramRequestPojo.getEndpoint().contains("{") && createProgramRequestPojo.getEndpoint().contains("}")) {
-            response = request.when().get(createProgramRequestPojo.getEndpoint(), getProgramID());
+ 
+        if (createProgramRequestPojo.getEndPoint().contains("{") && createProgramRequestPojo.getEndPoint().contains("}")) {
+            response = request.when().get(createProgramRequestPojo.getEndPoint(), getProgramID().get(0));
         } else if(createProgramRequestPojo.getMethod().contains("Post")) {
-            response = request.when().post(createProgramRequestPojo.getEndpoint());
+            response = request.when().post(createProgramRequestPojo.getEndPoint());
         } else {
-            response = request.when().get(createProgramRequestPojo.getEndpoint());
+            response = request.when().get(createProgramRequestPojo.getEndPoint());
         }
 
+        if(createProgramRequestPojo.getAction().contains("validateSchemaProgram")) {
+            response.then().assertThat().body(matchesJsonSchemaInClasspath("schemas/ProgramDto.json"));
+        }
 
         statusCode = response.getStatusCode();
         statusLine = response.getStatusLine();
-
-        System.out.println("Response :" + response.asPrettyString());
-        System.out.println("StatusCode :" + statusCode);
-
+        
         return response;
     }
 
