@@ -11,17 +11,23 @@ import io.cucumber.testng.CucumberOptions;
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
 				},
 		monochrome=false,  //console output color
-		features = {"src/test/resources/features" }, //location of feature files
+		features = {"src/test/resources/features/01userLogin",
+				"src/test/resources/features/02programModule",
+				"src/test/resources/features/05userLogout"
+				}, //location of feature files
+		//features = {"src/test/resources/features/02programModule/programCreate.feature" }, //location of feature files
+		//tags = "@TC9",
 		glue={"api.StepDefinitions"}
 		
 		)
 
+
 public class TestRunner extends AbstractTestNGCucumberTests {
-	@Override
+    @Override
     @DataProvider(parallel = false)
     public Object[][] scenarios() {
-				
-		return super.scenarios();
+
+        return super.scenarios();
     }
 
 }
