@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+    "batchId": {
+      "type": ["integer", "null"]
+    },
+    "batchName": {
+      "type": ["string", "null"]
+    },
+    "batchDescription": {
+      "type": ["string", "null"]
+    },
+    "batchStatus": {
+      "type": ["string", "null"]
+    },
+    "batchNoOfClasses": {
+      "type": ["integer", "null"]
+    },
+    "programId": {
+      "type": ["integer", "null"]
+    },
+    "programName": {
+      "type": ["string", "null"]
+    }
+  },
+  "required": [
+    "batchId",
+    "batchName",
+    "batchDescription",
+    "batchStatus",
+    "batchNoOfClasses",
+    "programId",
+    "programName"
+  ]
+}
