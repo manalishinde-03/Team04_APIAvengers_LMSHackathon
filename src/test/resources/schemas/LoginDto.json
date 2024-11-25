@@ -1,0 +1,7 @@
+{
+    "userLoginEmailId" :	"string"
+    "password" :	{
+        "type" : "string"
+        "pattern": "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?!.* )(?=.*[$@$!%*?&]).{8,32}$"
+    }
+}

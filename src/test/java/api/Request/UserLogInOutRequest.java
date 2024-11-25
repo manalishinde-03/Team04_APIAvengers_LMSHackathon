@@ -6,9 +6,14 @@ import api.Utility.ExcelReader;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import lombok.extern.log4j.Log4j2;
 
+import java.io.IOException;
 import java.util.HashMap;
 
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
+@Log4j2
 public class UserLogInOutRequest extends CommonUtils {
 
     public static String adminToken;
@@ -18,7 +23,11 @@ public class UserLogInOutRequest extends CommonUtils {
     String statusLine;
     private HashMap<String, LogInOutRequestPojo> testDataMap = new HashMap<>();
 
+    public UserLogInOutRequest() {
+    }
+
     public void buildRequest(LogInOutRequestPojo logInOutRequestPojo) {
+        log.info("Creating request for: {}", logInOutRequestPojo);
         request = RestAssured.given()
                 .baseUri(logInOutRequestPojo.getBaseUri())
                 .header("Content-Type", "application/json");
@@ -26,7 +35,7 @@ public class UserLogInOutRequest extends CommonUtils {
         if("WithAuth".equalsIgnoreCase(logInOutRequestPojo.getAction())) {
             request.auth().oauth2(getAdminToken());
         }
-        System.out.println("Request :" + request.log().all());
+        log.info("Request :" + request.log().all());
     }
 
     public Response sendGetRequest(LogInOutRequestPojo logInOutRequestPojo) {
@@ -38,7 +47,7 @@ public class UserLogInOutRequest extends CommonUtils {
 
     public Response sendPostRequest(LogInOutRequestPojo logInOutRequestPojo) {
         response = request.body(logInOutRequestPojo).when().post(logInOutRequestPojo.getEndPoint());
-        System.out.println("Response :" + response.print());
+        log.info("Response :" + response.print());
         handleResponse(response, logInOutRequestPojo);
         return response;
 	}
@@ -50,18 +59,21 @@ public class UserLogInOutRequest extends CommonUtils {
         if("StoreToken".equalsIgnoreCase(logInOutRequestPojo.getAction())) {
             adminToken = response.jsonPath().getString("token");
             setAdminToken(adminToken);
+            log.info("Response :" + response.asPrettyString());
         }
-        System.out.println("Response :" + response.asPrettyString());
-        System.out.println("Token :" + adminToken);
-        System.out.println("StatusCode :" + statusCode);
+
+        log.info("Token :" + adminToken);
+        log.info("StatusCode :" + statusCode);
     }
 
     public void loadTestData(String excelPath, String sheetName) throws Exception {
+        log.info("Loading excel data from {} sheet {}", excelPath, sheetName);
         testDataMap = ExcelReader.readTestDataLoginLogout(excelPath, sheetName);
     }
 
     public LogInOutRequestPojo getLoginRequestData(String testCaseID) {
         if (!testDataMap.containsKey(testCaseID)) {
+            log.error("Test case ID {} not found", testCaseID);
             throw new RuntimeException("Test case ID not found: " + testCaseID);
         }
         return testDataMap.get(testCaseID);

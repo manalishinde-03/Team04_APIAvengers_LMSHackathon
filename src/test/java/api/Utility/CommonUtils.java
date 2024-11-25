@@ -30,9 +30,6 @@ public class CommonUtils {
 	public static ArrayList<Integer> programIDArrList = new ArrayList<>();
 	public static ArrayList<String> programNameArrList = new ArrayList<>();
 
-	public static String userLoginEmailId = config.getString("userLoginEmailId");
-	public static String password = config.getString("password");
-	public static String loginEndPoint = config.getString("login");
 	public static String createProgramEndPoint = config.getString("program");
 
 	public static String excelFilePath = config.getString("Excel_Path");

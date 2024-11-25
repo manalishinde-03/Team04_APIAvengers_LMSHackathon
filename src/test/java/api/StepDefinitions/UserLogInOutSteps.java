@@ -6,9 +6,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
+import lombok.extern.log4j.Log4j2;
 
-import static api.StepDefinitions.ProgramCreateSteps.EXCEL_PATH;
+import static api.StepDefinitions.ProgramCreateSteps.excelFilePath;
 
+@Log4j2
 public class UserLogInOutSteps {
 
     UserLogInOutRequest adminLoginReq = new UserLogInOutRequest();
@@ -16,7 +18,7 @@ public class UserLogInOutSteps {
 
     @Given("Admin creates POST login request body for {string}")
     public void adminCreatesPOSTLoginRequestBodyFor(String testCaseId) throws Exception {
-        adminLoginReq.loadTestData(EXCEL_PATH, "LogIn-LogOut");
+        adminLoginReq.loadTestData(excelFilePath, "LogIn-LogOut");
         LogInOutRequestPojo loginRequestData = adminLoginReq.getLoginRequestData(testCaseId);
         adminLoginReq.buildRequest(loginRequestData);
     }
@@ -28,7 +30,7 @@ public class UserLogInOutSteps {
 
     @Given("Admin creates GET logout request body for {string}")
     public void adminCreatesGETLogoutRequestBodyFor(String testCaseId) throws Exception {
-        adminLoginReq.loadTestData(EXCEL_PATH, "LogIn-LogOut");
+        adminLoginReq.loadTestData(excelFilePath, "LogIn-LogOut");
         LogInOutRequestPojo loginRequestData = adminLoginReq.getLoginRequestData(testCaseId);
         adminLoginReq.buildRequest(loginRequestData);
     }
@@ -40,6 +42,8 @@ public class UserLogInOutSteps {
 
     @Then("Admin receives {string} {string} Status.")
     public void adminReceivesStatus(String code, String status) {
+        log.info("Response body: {}", response.body());
+
         adminLoginReq.response.then().assertThat().statusCode(Integer.parseInt(code));
     }
 }

@@ -6,16 +6,18 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
+import lombok.extern.log4j.Log4j2;
 
-import static api.StepDefinitions.ProgramCreateSteps.EXCEL_PATH;
+import static api.StepDefinitions.ProgramCreateSteps.excelFilePath;
 
+@Log4j2
 public class GetAllProgramsStep {
 
     GetAllProgramRequest allProgramRequest = new GetAllProgramRequest();
     public Response response;
     @Given("Admin creates GET Program request for the LMS API for {string}")
     public void adminCreatesGETProgramRequestForTheLMSAPIFor(String testCaseId) throws Exception {
-        allProgramRequest.loadTestData(EXCEL_PATH, "Program");
+        allProgramRequest.loadTestData(excelFilePath, "Program");
         CreateProgramRequestPojo createProgramRequestPojo = allProgramRequest.getProgramData(testCaseId);
         allProgramRequest.buildRequest(createProgramRequestPojo);
     }
@@ -27,6 +29,7 @@ public class GetAllProgramsStep {
 
     @Then("Admin receives {string} status.")
     public void adminReceivesStatus(String code) {
+        log.info("Response body: {}", response.body());
         allProgramRequest.response.then().assertThat().statusCode(Integer.parseInt(code));
     }
 }
