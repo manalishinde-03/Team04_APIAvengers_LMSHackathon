@@ -5,31 +5,37 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class CommonUtils {
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
-	public static String adminToken;
-	private static int programID1;
-	public static String programName1;
 
-	private static int programID2;
-	public static String programName2;
-	public static String programStatus;
-
-	@Getter
-	@Setter
-	public static Integer batchID;
-	public static String batchName;
-
-	public static ResourceBundle config = ResourceBundle.getBundle("config");
-
-	public static String baseURI = config.getString("baseUrl");
-
+public class CommonUtils {	
+	
+	
 	public static ArrayList<Integer> programIDArrList = new ArrayList<>();
 	public static ArrayList<String> programNameArrList = new ArrayList<>();
 
+	public static ArrayList<Integer> batchIDArrList = new ArrayList<>();
+	public static ArrayList<String> batchNameArrList = new ArrayList<>();
+	
+	
+	public static String adminToken;
+	
+	private static Logger logger;
+	
+    public static ResourceBundle config = ResourceBundle.getBundle("config");	
+	
+	public static String baseURI = config.getString("baseUrl");
+
+	
+	public static String userLoginEmailId = config.getString("userLoginEmailId");
+	public static String password = config.getString("password");
+	public static String loginEndPoint = config.getString("login");
+	
+	
 	public static String createProgramEndPoint = config.getString("program");
 
 	public static String excelFilePath = config.getString("Excel_Path");
@@ -58,14 +64,6 @@ public class CommonUtils {
 		return programNameArrList;
 	}
 
-	public static String getProgramStatus() {
-		return programStatus;
-	}
-
-	public static void setProgramStatus(String programStatus) {
-		CommonUtils.programStatus = programStatus;
-	}
-
 	public static String getAdminToken() {
 		return adminToken;
 	}
@@ -73,6 +71,24 @@ public class CommonUtils {
 	public static void setAdminToken(String token) {
 		adminToken = token;
 	}
+
+	public static Logger getLogger() {
+		logger = LogManager.getLogger();
+		return logger;
+	}
+	
+	public static boolean isValidJson(String jsonString) {
+        try {
+        	if(null != jsonString && !jsonString.equalsIgnoreCase("") && jsonString.length()>0) {
+        		JsonParser parser = new JsonParser();
+            	parser.parse(jsonString);
+            	return true;
+            } else return false;
+        } catch (JsonSyntaxException e) {
+            return false;
+        }
+    }
+	
 
 	public static Map<String, String> getDefaultHeaders() {
 		Map<String, String> headers = new HashMap<>();
@@ -87,5 +103,6 @@ public class CommonUtils {
 		headers.put("Content-Type", "application/json");
 		return headers;
 	}
+
 
 }
