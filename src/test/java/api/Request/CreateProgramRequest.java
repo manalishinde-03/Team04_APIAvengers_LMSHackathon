@@ -1,38 +1,17 @@
 package api.Request;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.testng.Assert;
-import org.testng.Reporter;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import api.Payload.CreateProgramPayload;
-import api.Payload.UserLoginPayload;
 import api.Pojo.CreateProgramRequestPojo;
-import api.Pojo.LoginRequestPojo;
 import api.Utility.CommonUtils;
 import api.Utility.ExcelReader;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CreateProgramRequest extends CommonUtils {
 
@@ -75,7 +54,7 @@ public class CreateProgramRequest extends CommonUtils {
 	public Response sendPostRequest(String testCaseID) throws Exception {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
-		String endpoint = programData.getEndpoint();
+		String endpoint = programData.getEndPoint();
 
 		String jsonBody = new ObjectMapper().writeValueAsString(programData);
 		System.out.println("JSON for TestCaseID " + testCaseID + ": " + jsonBody);
@@ -150,7 +129,7 @@ public class CreateProgramRequest extends CommonUtils {
 	public Response sendhttpMethod(String httpReq, String testCaseID) {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
-		String endpoint = programData.getEndpoint();
+		String endpoint = programData.getEndPoint();
 
 		
 		RestAssured.baseURI = CommonUtils.baseURI;
@@ -184,7 +163,7 @@ public class CreateProgramRequest extends CommonUtils {
 	public Response sendPUTRequest(String testCaseID) throws Exception {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
-		String endpoint = programData.getEndpoint();
+		String endpoint = programData.getEndPoint();
 		String endpointByName = endpoint.replace("{programName}", CommonUtils.getProgramName().get(0));
 
 		System.out.println("endpointByName >>>>> "+endpointByName);

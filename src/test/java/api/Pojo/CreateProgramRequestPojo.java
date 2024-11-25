@@ -7,13 +7,16 @@ public class CreateProgramRequestPojo {
 	private String programDescription;
 	private String programName;
 	private String programStatus;
-	
+
 	@JsonIgnore
-	private String endpoint;
+	private String endPoint;
 
 	@JsonIgnore
 	private String testCaseId;
-	
+	@JsonIgnore
+	private String action;
+	@JsonIgnore
+	private String method;
 	@JsonIgnore
 	private String expectedStatusCode;
 
@@ -24,7 +27,6 @@ public class CreateProgramRequestPojo {
 	public void setTestCaseId(String testCaseId) {
 		this.testCaseId = testCaseId;
 	}
-
 
 	public String getExpectedStatusCode() {
 		return expectedStatusCode;
@@ -58,13 +60,27 @@ public class CreateProgramRequestPojo {
 		this.programStatus = programStatus;
 	}
 
-	public String getEndpoint() {
-        return endpoint; // Getter for Endpoint
-    }
-	
-	public void setEndpoint(String endpoint) {
-		 this.endpoint = endpoint;
-		
+	public String getEndPoint() {
+		return endPoint;
 	}
 
+	public void setEndPoint(String endPoint) {
+		this.endPoint = endPoint;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
+	public String getMethod() {
+		return method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
+	}
 }

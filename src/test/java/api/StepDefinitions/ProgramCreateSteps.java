@@ -1,27 +1,19 @@
 package api.StepDefinitions;
 
-import static org.hamcrest.Matchers.equalTo;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.testng.Assert;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import api.Payload.CreateProgramPayload;
 import api.Pojo.CreateProgramRequestPojo;
 import api.Request.CreateProgramRequest;
-import api.Request.UserLoginRequest;
 import api.Utility.CommonUtils;
-import api.Utility.ExcelReader;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.testng.Assert;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProgramCreateSteps extends CommonUtils {
 	
@@ -90,7 +82,7 @@ public class ProgramCreateSteps extends CommonUtils {
 		 Map<String, String> headers = CommonUtils.getHeadersWithoutAuth();
 		 CreateProgramRequestPojo programData = createProgramRequest.getProgramData(testCaseID);
 		 
-		 String endpoint = programData.getEndpoint();
+		 String endpoint = programData.getEndPoint();
 		 System.out.println("Endpoint :"+endpoint);
 		 
 		response = createProgramRequest.sendPostRequestGeneric(
@@ -109,7 +101,7 @@ public class ProgramCreateSteps extends CommonUtils {
 		 Map<String, String> headers = CommonUtils.getDefaultHeaders();
 		 CreateProgramRequestPojo programData = createProgramRequest.getProgramData(testCaseID);
 		 
-		 String invalidEndpoint = programData.getEndpoint();
+		 String invalidEndpoint = programData.getEndPoint();
 		 System.out.println("Invalid Endpoint :"+invalidEndpoint);
 		 
 		response = createProgramRequest.sendPostRequestGeneric(
@@ -128,7 +120,7 @@ public class ProgramCreateSteps extends CommonUtils {
 		 Map<String, String> headers = CommonUtils.getDefaultHeaders();
 		 CreateProgramRequestPojo programData = createProgramRequest.getProgramData(testCaseID);
 		 
-		 String endpoint = programData.getEndpoint();
+		 String endpoint = programData.getEndPoint();
 		 System.out.println("Invalid Endpoint :"+endpoint);
 		 
 		response = createProgramRequest.sendPostRequestGeneric(
@@ -152,7 +144,7 @@ public class ProgramCreateSteps extends CommonUtils {
 		 Map<String, String> headers = CommonUtils.getDefaultHeaders();
 		 CreateProgramRequestPojo programData = createProgramRequest.getProgramData(testCaseID);
 		    
-		 String endpoint = programData.getEndpoint();
+		 String endpoint = programData.getEndPoint();
 		 System.out.println("Invalid Endpoint :"+endpoint);
 		 response = createProgramRequest.sendPostRequestGeneric(endpoint, 
 				    programData, 
