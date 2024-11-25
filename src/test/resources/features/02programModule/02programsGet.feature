@@ -11,15 +11,15 @@ Feature: Get All Programs
       | TestCaseID      | ExpectedStatusCode |
       | POST_LOGIN-01   | 200                |
 
-  #@CreateProgramWithExcel @TC1
-  #Scenario Outline: Validate API response for creating a program
-    #Given Admin creates POST request body for "<TestCaseID>"
-    #When Admin sends POST request to create a program for "<TestCaseID>"
-    #Then Response status code should be "<ExpectedStatusCode>"
-#
-    #Examples:
-      #| TestCaseID      | ExpectedStatusCode |
-      #| POST_PROGRAM_01 |                201 |
+  @CreateProgramWithExcel @TC1
+  Scenario Outline: Validate API response for creating a program
+    Given Admin creates POST request body for "<TestCaseID>"
+    When Admin sends POST request to create a program for "<TestCaseID>"
+    Then Response status code should be "<ExpectedStatusCode>"
+
+    Examples:
+      | TestCaseID      | ExpectedStatusCode |
+      | POST_PROGRAM_01 |                201 |
 
   @tag2
   Scenario Outline: User able to retrieve all programs with valid Endpoint
