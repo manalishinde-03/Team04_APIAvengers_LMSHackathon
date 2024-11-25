@@ -10,8 +10,10 @@ Feature: Create Program Module
     Examples: 
       | TestCaseID      | ExpectedStatusCode |
       | POST_PROGRAM_01 |                201 |
-      #| POST_PROGRAM_02 |                201 |
-#		  | POST_PROGRAM_03 |                400 |
+     #| POST_PROGRAM_02 |                201 |
+		# |POST_PROGRAM_03 |                201 |
+			| POST_PROGRAM_04 |                201 |
+			| POST_PROGRAM_05 |                400 |
   #
   #@TC2
   #Scenario Outline: Validate API response for creating a program with No Auth
