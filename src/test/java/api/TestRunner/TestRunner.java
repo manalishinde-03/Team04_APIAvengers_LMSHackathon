@@ -13,6 +13,8 @@ import io.cucumber.testng.CucumberOptions;
 		monochrome=false,  //console output color
 		features = {"src/test/resources/features/01userLogin",
 				"src/test/resources/features/02programModule",
+				"src/test/resources/features/03batchModule",
+				"src/test/resources/features/deleteRequests",
 				"src/test/resources/features/05userLogout"
 				}, //location of feature files
 		//features = {"src/test/resources/features/02programModule/programCreate.feature" }, //location of feature files
