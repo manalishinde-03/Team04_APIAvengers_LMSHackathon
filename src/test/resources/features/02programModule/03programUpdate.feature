@@ -1,7 +1,6 @@
 @ProgramModuleAPIVerification
 Feature: Update Program Module
 
-  #PUT by Program Name Scenarios
   @TC7
   Scenario Outline: Validate API response for updating program with valid request body
   Given Admin creates PUT request body for "<TestCaseID>"
