@@ -58,12 +58,7 @@ public class BatchModuleRequest extends CommonUtils {
 	
 	  public RequestSpecification createBatchbuildRequest(String Testcase) throws
 	  JsonProcessingException, IOException{	  
-		  
-		  programIDArrList.add(Integer.parseInt(config.getString("ProgramId1")));
-		  programNameArrList.add(config.getString("ProgramName1"));		  
-		  programIDArrList.add(Integer.parseInt(config.getString("ProgramId2")));
-		  programNameArrList.add(config.getString("ProgramName2"));	
-		  
+		
 		createRequest= excelUtil.batchPojoUtil("Batch",Testcase);  
 		
 	   dataRequestBody =objectMapper.writeValueAsString(createRequest.getCreatebatch());
@@ -90,7 +85,9 @@ public Response CreateBatchSendRequest(){
 	  if (null!=Authorization) { 
 		  request.header("Authorization", "Bearer " +	 Authorization );
 	   }	
-		
+	 
+	request.log().all();
+	  
 	response=request
 		    .when()                                      
 		    .post(Endpoint); 	
@@ -111,9 +108,9 @@ public Response sendRequestupdateBybatchID()
 	String Authorization = (!createRequest.getAuthorizarion().equalsIgnoreCase("Valid")) ? null : getAdminToken();	
 	Integer BatchID=(createRequest.getBatchId()==null? batchIDArrList.get(0) :createRequest.getBatchId());	
 	
-	System.out.println("UpdateBatchEndpoint::"+UpdateBatchEndpoint+BatchID);
-	System.out.println("Authorization::"+Authorization);
-	System.out.println("POJO::"+dataRequestBody);
+	logger.debug("UpdateBatchEndpoint::"+UpdateBatchEndpoint+BatchID);
+	logger.debug("Authorization::"+Authorization);
+	logger.debug("POJO::"+dataRequestBody);
 	
 	request =  RestAssured.given()
 		    .baseUri(baseURI)                           
@@ -123,17 +120,14 @@ public Response sendRequestupdateBybatchID()
 
 	if (null != Authorization) {
 		request.header("Authorization", "Bearer " + Authorization);
-	}	
-			
-	System.out.println("Request ::" + request.toString());	
-	
+	}
 	response=request
 		    .when()                                      
 		    .put(UpdateBatchEndpoint + BatchID); 
 	
 	
-	System.out.println("Response Code"+ response.getStatusCode());
-	System.out.println("Response "+response.asPrettyString());
+	logger.info("Response Code"+ response.getStatusCode());
+	logger.info("Response "+response.asPrettyString());
 	
 	return response;
 	
@@ -153,8 +147,16 @@ public boolean updateBybatchIdValidation(String ExpCode)
 		JsonPath jsonPath = new JsonPath(responseBody);	
 		Integer BatchId1 = jsonPath.getInt("batchId");
 		String BatchName1=jsonPath.getString("batchName");
-		Assert.assertEquals(BatchId1,batchIDArrList.get(0));	
-		Assert.assertEquals(BatchName1,batchNameArrList.get(0));		
+		logger.debug("createRequest.getBatchId::"+createRequest.getBatchId()+",Response Batch Id:"+BatchId1);
+		logger.debug("createRequest.BatchName::"+createRequest.getCreatebatch().getBatchName()+",Response Batch Id:"+BatchName1);
+		if(createRequest.getBatchId()!=null) {			
+			Assert.assertEquals(BatchId1,createRequest.getBatchId());
+			Assert.assertEquals(BatchName1,createRequest.getCreatebatch().getBatchName());
+		}else {
+			Assert.assertEquals(BatchId1,batchIDArrList.get(0));
+			Assert.assertEquals(BatchName1,batchNameArrList.get(0));
+		}
+				
 		
 	}
 	return true;
@@ -169,7 +171,7 @@ public RequestSpecification buildUpdateByBatchIDrequest(String UpdateByBatchIDTe
 
 		dataRequestBody =objectMapper.writeValueAsString(createRequest.getCreatebatch());
 
-		System.out.println("dataRequestBody ::"+dataRequestBody);
+		logger.debug("dataRequestBody ::"+dataRequestBody);
 
 		return request;
 
@@ -226,8 +228,8 @@ public boolean getBatchByProgramIDvalidation(String StatusCode)
 		response.then().assertThat().header("Content-Type", "application/json");
 		String responseBody = response.getBody().asString();
 		JsonPath jsonPath = new JsonPath(responseBody);	
-		System.out.println("Response Body::"+ responseBody);
-		System.out.println("ProgramIds List::"+ jsonPath.getInt("programId"));
+		logger.info("Response Body::"+ responseBody);
+		logger.debug("ProgramIds List::"+ jsonPath.getString("programId"));
 			
 	}
 	return true;
@@ -436,6 +438,7 @@ public Response batch_allGetRequest(String reqName) {
 						if (null != param) {
 						request.param("search", param);
 									}
+						request.log().all();
 						response = request.when().get(Endpoint);
 						break;
 						

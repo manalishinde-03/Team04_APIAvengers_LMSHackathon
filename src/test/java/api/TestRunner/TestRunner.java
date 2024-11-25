@@ -10,19 +10,28 @@ import io.cucumber.testng.CucumberOptions;
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
 				},
-				tags="@test",
+				//tags="@test",
 		monochrome=false,  //console output color
-		features = {"src/test/resources/features" }, //location of feature files
+		features = {"src/test/resources/features/01userLogin",
+				"src/test/resources/features/02programModule",				
+				"src/test/resources/features/03batchModule",
+				"src/test/resources/features/05deleteRequests",
+				//"src/test/resources/features/06userLogout",
+				
+				}, //location of feature files
+		//features = {"src/test/resources/features/02programModule/programCreate.feature" }, //location of feature files
+		//tags = "@TC9",
 		glue={"api.StepDefinitions"}
 		
 		)
 
+
 public class TestRunner extends AbstractTestNGCucumberTests {
-	@Override
+    @Override
     @DataProvider(parallel = false)
     public Object[][] scenarios() {
-				
-		return super.scenarios();
+
+        return super.scenarios();
     }
 
 }

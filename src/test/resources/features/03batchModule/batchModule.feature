@@ -1,7 +1,7 @@
 Feature: Admin Batch Module
 
 
-@test
+
 Scenario Outline: Check if admin able to create a Batch with endpoint and request body
 
 Given Admin creates POST request body for the Testcases "<TestCase>"
@@ -21,7 +21,7 @@ Then  Admin receives respective status codes "<Exp_StatusCode>" for the TestCase
  |POST-BATCH-08|201| 
  
   
-@test
+
 Scenario Outline: Check if admin able to retrieve all batches  
  
 Given  Admin creates GET Request for the "<GetTestCases>"
@@ -38,7 +38,7 @@ Then  Admin receives status code with response body "<ExpStatusCode>"
  
  
  
-@test
+
  Scenario Outline: Check if admin able to retrieve batch by Batch ID
  
  Given  Admin creates GET Request for the GetBy BatchID "<GetByBATCHID_Cases>"
@@ -56,7 +56,7 @@ Then  Admin receives status code with response body "<ExpStatusCode>"
  
  
  
- @test
+
 Scenario Outline: Check if admin able to retrieve batch by batch Name
  
  Given  Admin creates GET Request for the GetBy BatchName "<GetByBATCHNAME_Cases>" Request
@@ -73,7 +73,7 @@ Scenario Outline: Check if admin able to retrieve batch by batch Name
  |GET_BY_BATCHNAME_05|200|
  
   
-@test
+
  Scenario Outline: Check if admin able to retrieve batch by Program ID
  
  Given Admin creates GET Request for the GetBy ProgramID "<GetBYPGMID_Cases>" Request
@@ -90,7 +90,7 @@ Scenario Outline: Check if admin able to retrieve batch by batch Name
  
  
  
-@test
+
 Scenario Outline: Check if admin able to delete a Batch By Batch ID
 
 Given Admin creates DELETE Request By BatchId "<DelByBATCHID_Cases>"
@@ -105,7 +105,7 @@ Then  Admin receives status code with success message for DelByBatchID request "
  |DEL_BY_BATCHID_04|200|
  
  
-@test
+
 Scenario Outline: Check if admin able to update a batch by BatchID
 
  Given Admin creates PUT Request By BatchId "<UPDATEByBATCHID_Cases>"

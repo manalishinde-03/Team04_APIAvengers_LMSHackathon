@@ -1,0 +1,125 @@
+2024-11-25 13:06:20.881 INFO [main] [api.Request.BatchModuleRequest.createBatchbuildRequest(BatchModuleRequest.java:66)] - Post Request Body :: {"batchDescription":"test","batchName":"Test1","batchNoOfClasses":10,"batchStatus":"Test4","programId":16262}
+2024-11-25 13:06:21.014 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:97)] - Response Code ::404
+2024-11-25 13:06:21.014 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:98)] - ResponseBody:Invalid endpoint
+2024-11-25 13:06:21.071 INFO [main] [api.Request.BatchModuleRequest.createBatchbuildRequest(BatchModuleRequest.java:66)] - Post Request Body :: {"batchDescription":"Aru","batchName":"Anbu","batchNoOfClasses":10,"batchStatus":"Active","programId":1245}
+2024-11-25 13:06:21.217 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:97)] - Response Code ::401
+2024-11-25 13:06:21.218 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:98)] - ResponseBody:
+2024-11-25 13:06:21.268 INFO [main] [api.Request.BatchModuleRequest.createBatchbuildRequest(BatchModuleRequest.java:66)] - Post Request Body :: {"batchDescription":"RestAssured Testing","batchName":"Test1","batchNoOfClasses":10,"batchStatus":"Active","programId":16262}
+2024-11-25 13:06:21.415 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:97)] - Response Code ::400
+2024-11-25 13:06:21.416 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:98)] - ResponseBody:{"message":"Program TestingBUG with Batch-Test1 already exists: ; Please give a different batch Name or Choose a different Program","success":false}
+2024-11-25 13:06:21.468 INFO [main] [api.Request.BatchModuleRequest.createBatchbuildRequest(BatchModuleRequest.java:66)] - Post Request Body :: {"batchDescription":"Missing Mandatory Fields"}
+2024-11-25 13:06:21.612 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:97)] - Response Code ::400
+2024-11-25 13:06:21.613 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:98)] - ResponseBody:{"message":"Invalid Status: must be Active or Inactive","success":false}
+2024-11-25 13:06:21.665 INFO [main] [api.Request.BatchModuleRequest.createBatchbuildRequest(BatchModuleRequest.java:66)] - Post Request Body :: {"batchName":"analytic49","batchNoOfClasses":10,"batchStatus":"Active","programId":16709}
+2024-11-25 13:06:21.812 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:97)] - Response Code ::201
+2024-11-25 13:06:21.812 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:98)] - ResponseBody:{"batchId":8749,"batchName":"analytic49","batchDescription":null,"batchStatus":"Active","batchNoOfClasses":10,"programId":16709,"programName":"analytapgfgdfdyrrfddffd"}
+2024-11-25 13:06:21.987 INFO [main] [api.Request.BatchModuleRequest.createBatchResponseValidation(BatchModuleRequest.java:197)] - Batch ID added to the ArrayList --> [8749]
+2024-11-25 13:06:21.987 INFO [main] [api.Request.BatchModuleRequest.createBatchResponseValidation(BatchModuleRequest.java:198)] - Batch Name added to the ArrayList--> [analytic49]
+2024-11-25 13:06:22.046 INFO [main] [api.Request.BatchModuleRequest.createBatchbuildRequest(BatchModuleRequest.java:66)] - Post Request Body :: {"batchDescription":"Test78Testin","batchName":"bat$$$","batchNoOfClasses":2334,"batchStatus":"Active","programId":345}
+2024-11-25 13:06:22.195 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:97)] - Response Code ::400
+2024-11-25 13:06:22.196 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:98)] - ResponseBody:{"message":"No of classes should be a 1 digit or 2 digit number. Cannot exceed 2 digits","success":false}
+2024-11-25 13:06:22.265 INFO [main] [api.Request.BatchModuleRequest.createBatchbuildRequest(BatchModuleRequest.java:66)] - Post Request Body :: {"batchDescription":"Testing  Description","batchName":"Test","batchNoOfClasses":10,"batchStatus":"Active","programId":17470}
+2024-11-25 13:06:22.406 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:97)] - Response Code ::404
+2024-11-25 13:06:22.407 INFO [main] [api.Request.BatchModuleRequest.CreateBatchSendRequest(BatchModuleRequest.java:98)] - ResponseBody:{"message":"Program not found with Id : 17470 ","success":false}
+2024-11-25 13:06:22.536 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:436)] - Get All Batches  Request-----> 
+2024-11-25 13:06:22.689 INFO [main] [api.Request.BatchModuleRequest.GetAllBatchREsponseValidation(BatchModuleRequest.java:211)] - Get All batches Response Status Code---->401
+2024-11-25 13:06:22.737 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:436)] - Get All Batches  Request-----> 
+2024-11-25 13:06:22.881 INFO [main] [api.Request.BatchModuleRequest.GetAllBatchREsponseValidation(BatchModuleRequest.java:211)] - Get All batches Response Status Code---->404
+2024-11-25 13:06:23.108 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:436)] - Get All Batches  Request-----> 
+2024-11-25 13:06:23.351 INFO [main] [api.Request.BatchModuleRequest.GetAllBatchREsponseValidation(BatchModuleRequest.java:211)] - Get All batches Response Status Code---->200
+2024-11-25 13:06:23.506 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:436)] - Get All Batches  Request-----> 
+2024-11-25 13:06:23.740 INFO [main] [api.Request.BatchModuleRequest.GetAllBatchREsponseValidation(BatchModuleRequest.java:211)] - Get All batches Response Status Code---->200
+2024-11-25 13:06:23.909 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:446)] - Get Batch By Batch ID Request-----> 
+2024-11-25 13:06:24.049 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:446)] - Get Batch By Batch ID Request-----> 
+2024-11-25 13:06:24.135 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:446)] - Get Batch By Batch ID Request-----> 
+2024-11-25 13:06:24.136 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:449)] - Batch Id for the Endpoint ---> 9867
+2024-11-25 13:06:24.301 INFO [main] [api.Request.BatchModuleRequest.getBybatchIDValidation(BatchModuleRequest.java:243)] - Response Code404
+2024-11-25 13:06:24.334 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:446)] - Get Batch By Batch ID Request-----> 
+2024-11-25 13:06:24.335 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:449)] - Batch Id for the Endpoint ---> 9199
+2024-11-25 13:06:24.545 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:446)] - Get Batch By Batch ID Request-----> 
+2024-11-25 13:06:24.652 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:456)] - Get Batch By Batch Name Request-----> 
+2024-11-25 13:06:24.652 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:459)] - Batch Name for the Endpoint --> analytic49
+2024-11-25 13:06:24.787 INFO [main] [api.Request.BatchModuleRequest.getByBatchName_MessageValidation(BatchModuleRequest.java:264)] - Response Code401
+2024-11-25 13:06:24.827 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:456)] - Get Batch By Batch Name Request-----> 
+2024-11-25 13:06:24.827 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:459)] - Batch Name for the Endpoint --> analytic49
+2024-11-25 13:06:24.970 INFO [main] [api.Request.BatchModuleRequest.getByBatchName_MessageValidation(BatchModuleRequest.java:264)] - Response Code404
+2024-11-25 13:06:25.004 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:456)] - Get Batch By Batch Name Request-----> 
+2024-11-25 13:06:25.004 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:459)] - Batch Name for the Endpoint --> BatchName
+2024-11-25 13:06:25.152 INFO [main] [api.Request.BatchModuleRequest.getByBatchName_MessageValidation(BatchModuleRequest.java:264)] - Response Code404
+2024-11-25 13:06:25.185 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:456)] - Get Batch By Batch Name Request-----> 
+2024-11-25 13:06:25.185 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:459)] - Batch Name for the Endpoint --> analytic49
+2024-11-25 13:06:25.345 INFO [main] [api.Request.BatchModuleRequest.getByBatchName_MessageValidation(BatchModuleRequest.java:264)] - Response Code200
+2024-11-25 13:06:25.408 INFO [main] [api.Request.BatchModuleRequest.getByBatchName_MessageValidation(BatchModuleRequest.java:272)] - Response Body Batch Name --->analytic49
+2024-11-25 13:06:25.494 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:456)] - Get Batch By Batch Name Request-----> 
+2024-11-25 13:06:25.494 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:459)] - Batch Name for the Endpoint --> analytic49
+2024-11-25 13:06:25.674 INFO [main] [api.Request.BatchModuleRequest.getByBatchName_MessageValidation(BatchModuleRequest.java:264)] - Response Code200
+2024-11-25 13:06:25.690 INFO [main] [api.Request.BatchModuleRequest.getByBatchName_MessageValidation(BatchModuleRequest.java:272)] - Response Body Batch Name --->analytic49
+2024-11-25 13:06:25.745 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:466)] - Get Batch By Program ID Request-----> 
+2024-11-25 13:06:25.816 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:466)] - Get Batch By Program ID Request-----> 
+2024-11-25 13:06:25.895 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:466)] - Get Batch By Program ID Request-----> 
+2024-11-25 13:06:25.895 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:469)] - Program ID for the Endpoint --> 56745
+2024-11-25 13:06:26.043 INFO [main] [api.Request.BatchModuleRequest.getBatchByProgramIDvalidation(BatchModuleRequest.java:225)] - Response Code----404
+2024-11-25 13:06:26.074 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:466)] - Get Batch By Program ID Request-----> 
+2024-11-25 13:06:26.110 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:466)] - Get Batch By Program ID Request-----> 
+2024-11-25 13:06:26.144 INFO [main] [api.Request.BatchModuleRequest.batch_allGetRequest(BatchModuleRequest.java:469)] - Program ID for the Endpoint --> 17470
+2024-11-25 13:06:26.474 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:129)] - Response Code404
+2024-11-25 13:06:26.474 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:130)] - Response Invalid endpoint
+2024-11-25 13:06:26.636 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:129)] - Response Code401
+2024-11-25 13:06:26.636 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:130)] - Response 
+2024-11-25 13:06:26.830 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:129)] - Response Code200
+2024-11-25 13:06:26.831 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:130)] - Response {
+    "batchId": 8749,
+    "batchName": "analytic49",
+    "batchDescription": null,
+    "batchStatus": "Active",
+    "batchNoOfClasses": 15,
+    "programId": 16709,
+    "programName": "analytapgfgdfdyrrfddffd"
+}
+2024-11-25 13:06:27.126 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:129)] - Response Code400
+2024-11-25 13:06:27.127 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:130)] - Response {
+    "message": "Batch Name is mandatory",
+    "success": false
+}
+2024-11-25 13:06:27.284 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:129)] - Response Code400
+2024-11-25 13:06:27.285 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:130)] - Response {
+    "message": "batchName Please provide a valid name and must begin with letter and can have letters,numbers and sometimes hyphens",
+    "success": false
+}
+2024-11-25 13:06:27.446 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:129)] - Response Code400
+2024-11-25 13:06:27.447 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:130)] - Response {
+    "message": "Batch cannot be updated for a Program with Inactive status",
+    "success": false
+}
+2024-11-25 13:06:27.604 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:129)] - Response Code200
+2024-11-25 13:06:27.605 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:130)] - Response {
+    "batchId": 8671,
+    "batchName": "Batch23Test",
+    "batchDescription": "Testing",
+    "batchStatus": "Active",
+    "batchNoOfClasses": 23,
+    "programId": 16334,
+    "programName": "TestingBUGs"
+}
+2024-11-25 13:06:27.924 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:129)] - Response Code200
+2024-11-25 13:06:27.925 INFO [main] [api.Request.BatchModuleRequest.sendRequestupdateBybatchID(BatchModuleRequest.java:130)] - Response {
+    "batchId": 8749,
+    "batchName": "analytic49",
+    "batchDescription": "Testing All Fields",
+    "batchStatus": "Active",
+    "batchNoOfClasses": 24,
+    "programId": 16709,
+    "programName": "analytapgfgdfdyrrfddffd"
+}
+2024-11-25 13:06:28.312 INFO [main] [api.Request.BatchModuleRequest.sendRequestDelByBatchID(BatchModuleRequest.java:376)] - Delete By Batch ID  ----> 
+2024-11-25 13:06:28.312 INFO [main] [api.Request.BatchModuleRequest.sendRequestDelByBatchID(BatchModuleRequest.java:381)] - Batch Id for the Endpoint ---->8749
+2024-11-25 13:06:28.447 INFO [main] [api.Request.BatchModuleRequest.deleteBybatchIDValidation(BatchModuleRequest.java:395)] - Response Code ------>404
+2024-11-25 13:06:28.487 INFO [main] [api.Request.BatchModuleRequest.sendRequestDelByBatchID(BatchModuleRequest.java:376)] - Delete By Batch ID  ----> 
+2024-11-25 13:06:28.488 INFO [main] [api.Request.BatchModuleRequest.sendRequestDelByBatchID(BatchModuleRequest.java:381)] - Batch Id for the Endpoint ---->8749
+2024-11-25 13:06:28.607 INFO [main] [api.Request.BatchModuleRequest.deleteBybatchIDValidation(BatchModuleRequest.java:395)] - Response Code ------>401
+2024-11-25 13:06:28.639 INFO [main] [api.Request.BatchModuleRequest.sendRequestDelByBatchID(BatchModuleRequest.java:376)] - Delete By Batch ID  ----> 
+2024-11-25 13:06:28.639 INFO [main] [api.Request.BatchModuleRequest.sendRequestDelByBatchID(BatchModuleRequest.java:381)] - Batch Id for the Endpoint ---->34567
+2024-11-25 13:06:28.762 INFO [main] [api.Request.BatchModuleRequest.deleteBybatchIDValidation(BatchModuleRequest.java:395)] - Response Code ------>404
+2024-11-25 13:06:28.801 INFO [main] [api.Request.BatchModuleRequest.sendRequestDelByBatchID(BatchModuleRequest.java:376)] - Delete By Batch ID  ----> 
+2024-11-25 13:06:28.801 INFO [main] [api.Request.BatchModuleRequest.sendRequestDelByBatchID(BatchModuleRequest.java:381)] - Batch Id for the Endpoint ---->8749
+2024-11-25 13:06:28.930 INFO [main] [api.Request.BatchModuleRequest.deleteBybatchIDValidation(BatchModuleRequest.java:395)] - Response Code ------>200
