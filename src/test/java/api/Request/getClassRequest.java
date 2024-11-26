@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
+//import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -19,11 +19,11 @@ import org.testng.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import api.pojo.GetAllClassPojo;
-import api.pojo.classCrequestPojo;
-import api.pojo.createClassRequestBodyPojo;
-import api.utility.CommonUtils;
-import api.utility.ExcelReader;
+import api.Pojo.GetAllClassPojo;
+import api.Pojo.classCrequestPojo;
+import api.Pojo.createClassRequestBodyPojo;
+import api.Utility.CommonUtils;
+import api.Utility.ExcelReader;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -39,21 +39,21 @@ public class getClassRequest extends CommonUtils{
 	
 	
 
-	public String token() {
-
-		RestAssured.baseURI = CommonUtils.baseURI;
-		String requestBody = "{\n" + "\"userLoginEmailId\": \"sdet@gmail.com\",\n"
-				+ "\"password\":\"LmsHackathonApi@2024\"}\n" + "";
-
-		Response res = RestAssured.given().baseUri(CommonUtils.baseURI).header("Content-Type", "application/json")
-				.body(requestBody).when().post("/login").then().assertThat().extract().response();
-
-		System.out.println(res.asString());
-		JsonPath js = res.jsonPath();
-		String authtoken = js.getString("token");
-		return authtoken;
-
-	}
+//	public String token() {
+//
+//		RestAssured.baseURI = CommonUtils.baseURI;
+//		String requestBody = "{\n" + "\"userLoginEmailId\": \"sdet@gmail.com\",\n"
+//				+ "\"password\":\"LmsHackathonApi@2024\"}\n" + "";
+//
+//		Response res = RestAssured.given().baseUri(CommonUtils.baseURI).header("Content-Type", "application/json")
+//				.body(requestBody).when().post("/login").then().assertThat().extract().response();
+//
+//		System.out.println(res.asString());
+//		JsonPath js = res.jsonPath();
+//		String authtoken = js.getString("token");
+//		return authtoken;
+//
+//	}
 	
 	
 	//Code to getAllClass -data from Excel
@@ -69,11 +69,12 @@ public class getClassRequest extends CommonUtils{
 
 	public Response getAllClassSendRequest() {
 		 
-		String Authorization = token();
 		request = RestAssured.given().baseUri(baseURI);
 		switch (ExcelReader.getauthorization) {
 		case "bearer":
-			request.header("Authorization", "Bearer " + token()); // Add Bearer token
+		//	request.header("Authorization", "Bearer " + token()); // Add Bearer token
+			request.header("Authorization", "Bearer " + CommonUtils.getAdminToken()); // Add Bearer token
+
 			break;
 
 		case "noauth":
@@ -81,7 +82,9 @@ public class getClassRequest extends CommonUtils{
 			break;
 
 		default:
-			throw new IllegalArgumentException("Invalid token type: " + Authorization);
+		//	throw new IllegalArgumentException("Invalid token type: " + token());
+			throw new IllegalArgumentException("Invalid token type: " + CommonUtils.getAdminToken());
+
 		}	
 		
 		switch (ExcelReader.getmethod.toUpperCase()) {
@@ -99,6 +102,7 @@ public class getClassRequest extends CommonUtils{
 			break;
 		default:
 			throw new IllegalArgumentException("Invalid HTTP method type: " +ExcelReader.getmethod);
+			
 		}
 		
 		statusCode = response.getStatusCode();

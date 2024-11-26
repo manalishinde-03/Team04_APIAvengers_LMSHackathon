@@ -8,9 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
-import org.apache.maven.surefire.shared.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -24,12 +22,12 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import api.pojo.GetAllClassPojo;
-import api.pojo.classCrequestPojo;
-import api.pojo.createClassRequestBodyPojo;
-import api.utility.CommonUtils;
-import api.utility.ExcelReader;
-import api.utility.LoggerLoad;
+import api.Pojo.GetAllClassPojo;
+import api.Pojo.classCrequestPojo;
+import api.Pojo.createClassRequestBodyPojo;
+import api.Utility.CommonUtils;
+import api.Utility.ExcelReader;
+import api.Utility.LoggerLoad;
 
 public class createClassRequest extends CommonUtils {
 
@@ -44,22 +42,22 @@ public class createClassRequest extends CommonUtils {
 
 	// Build Request for Create Class
 
-	public String token() {
-
-		RestAssured.baseURI = CommonUtils.baseURI;
-		String requestBody = "{\n" + "\"userLoginEmailId\": \"sdet@gmail.com\",\n"
-				+ "\"password\":\"LmsHackathonApi@2024\"}\n" + "";
-
-		Response res = RestAssured.given().baseUri(CommonUtils.baseURI).header("Content-Type", "application/json")
-				.body(requestBody).when().post("/login").then().assertThat().extract().response();
-        LoggerLoad.info(res.asString());
-        LoggerLoad.info("AnusuyaSelvarah");
-
-	    //System.out.println(res.asString());
-		JsonPath js = res.jsonPath();
-		String authtoken = js.getString("token");
-		return authtoken;
-	}
+//	public String token() {
+//
+//		RestAssured.baseURI = CommonUtils.baseURI;
+//		String requestBody = "{\n" + "\"userLoginEmailId\": \"sdet@gmail.com\",\n"
+//				+ "\"password\":\"LmsHackathonApi@2024\"}\n" + "";
+//
+//		Response res = RestAssured.given().baseUri(CommonUtils.baseURI).header("Content-Type", "application/json")
+//				.body(requestBody).when().post("/login").then().assertThat().extract().response();
+//        LoggerLoad.info(res.asString());
+//        LoggerLoad.info("AnusuyaSelvarah");
+//
+//	    //System.out.println(res.asString());
+//		JsonPath js = res.jsonPath();
+//		String authtoken = js.getString("token");
+//		return authtoken;
+//	}
 
 	public RequestSpecification createClassbuildRequest(String Testcase) throws JsonProcessingException, IOException {
 
@@ -96,8 +94,8 @@ public class createClassRequest extends CommonUtils {
 		
 		switch (ExcelReader.authorization) {
 		case "bearer":
-			request.header("Authorization", "Bearer " + token()); // Add Bearer token
-//			request.header("Authorization", "Bearer " + CommonUtils.getAdminToken()); // Add Bearer token
+	//		request.header("Authorization", "Bearer " + token()); // Add Bearer token
+			request.header("Authorization", "Bearer " + CommonUtils.getAdminToken()); // Add Bearer token
 
 			break;
 
@@ -106,8 +104,8 @@ public class createClassRequest extends CommonUtils {
 			break;
 
 		default:
-			throw new IllegalArgumentException("Invalid token type: " + token());
-//			throw new IllegalArgumentException("Invalid token type: " + CommonUtils.getAdminToken());
+		//	throw new IllegalArgumentException("Invalid token type: " + token());
+			throw new IllegalArgumentException("Invalid token type: " + CommonUtils.getAdminToken());
 		}
 
 		response = request.when().post(ExcelReader.endpoint);

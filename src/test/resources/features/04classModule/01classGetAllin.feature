@@ -5,9 +5,9 @@ Feature: Get All Classes
 @GetAllClass
 Scenario Outline: Check if admin able to retrieve all classes for positive and negative scenarios  
  
-Given  Admin creates GET Request for the "<GetTestCases>"
-When  Admin sends the GetAll HTTPS Request with endpoint 
-Then  Admin receives status code with response body "<ExpStatusCode>"                                                             
+Given  Admin creates GET Request for the "<GetTestCases>" for classmodule
+When  Admin sends the GetAll HTTPS Request with endpoint for classmodule
+Then  Admin receives status code with response body "<ExpStatusCode>" for classmodule                                                           
 
 
  Examples: 

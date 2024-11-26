@@ -6,7 +6,7 @@ import java.util.Map;
 import org.testng.Assert;
 
 import api.Request.getClassRequest;
-import api.utility.CommonUtils;
+import api.Utility.CommonUtils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
