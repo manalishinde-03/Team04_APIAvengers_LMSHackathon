@@ -27,7 +27,7 @@ public class UserLogInOutRequest extends CommonUtils {
     }
 
     public void buildRequest(LogInOutRequestPojo logInOutRequestPojo) {
-    //    log.info("Creating request for: {}", logInOutRequestPojo);
+      log.info("Creating request for: {}", logInOutRequestPojo);
         request = RestAssured.given()
                 .baseUri(logInOutRequestPojo.getBaseUri())
                 .header("Content-Type", "application/json");
@@ -35,7 +35,7 @@ public class UserLogInOutRequest extends CommonUtils {
         if("WithAuth".equalsIgnoreCase(logInOutRequestPojo.getAction())) {
             request.auth().oauth2(getAdminToken());
         }
-     //   log.info("Request :" + request.log().all());
+       log.info("Request :" + request.log().all());
     }
 
     public Response sendGetRequest(LogInOutRequestPojo logInOutRequestPojo) {
@@ -47,7 +47,7 @@ public class UserLogInOutRequest extends CommonUtils {
 
     public Response sendPostRequest(LogInOutRequestPojo logInOutRequestPojo) {
         response = request.body(logInOutRequestPojo).when().post(logInOutRequestPojo.getEndPoint());
-       // log.info("Response :" + response.print());
+        log.info("Response :" + response.print());
         handleResponse(response, logInOutRequestPojo);
         return response;
 	}
@@ -59,21 +59,21 @@ public class UserLogInOutRequest extends CommonUtils {
         if("StoreToken".equalsIgnoreCase(logInOutRequestPojo.getAction())) {
             adminToken = response.jsonPath().getString("token");
             setAdminToken(adminToken);
-           // log.info("Response :" + response.asPrettyString());
+            log.info("Response :" + response.asPrettyString());
         }
 
-       // log.info("Token :" + adminToken);
-       // log.info("StatusCode :" + statusCode);
+        log.info("Token :" + adminToken);
+       log.info("StatusCode :" + statusCode);
     }
 
     public void loadTestData(String excelPath, String sheetName) throws Exception {
-       // log.info("Loading excel data from {} sheet {}", excelPath, sheetName);
+       log.info("Loading excel data from {} sheet {}", excelPath, sheetName);
         testDataMap = ExcelReader.readTestDataLoginLogout(excelPath, sheetName);
     }
 
     public LogInOutRequestPojo getLoginRequestData(String testCaseID) {
         if (!testDataMap.containsKey(testCaseID)) {
-          //  log.error("Test case ID {} not found", testCaseID);
+            log.error("Test case ID {} not found", testCaseID);
             throw new RuntimeException("Test case ID not found: " + testCaseID);
         }
         return testDataMap.get(testCaseID);

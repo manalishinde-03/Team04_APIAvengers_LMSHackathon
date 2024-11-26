@@ -35,7 +35,7 @@ public class GetAllProgramsStep {
     @Then("Admin receives {string} status.")
     public void adminReceivesStatus(String code) {
 
-    	//log.info("Response body: {}", response.body());
+    	log.info("Response body: {}", response.body());
         allProgramRequest.response.then().assertThat().statusCode(Integer.parseInt(code));
     }
 }
