@@ -5,6 +5,7 @@ Feature:Get Request All Recordings
 Background: 
   Given Admin creates the GET Request  
   
+  #AllRecordings
   @AllRecordings
   Scenario: Check if admin able to retrieve all class recordings 
   When Admin sends HTTPS Request with the endpoint 
