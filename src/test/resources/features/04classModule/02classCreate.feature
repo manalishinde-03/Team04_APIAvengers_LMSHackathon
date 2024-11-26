@@ -6,7 +6,7 @@ Feature: Create Class API
  # Given Admin receives 200 OK with auto generated token
 
   @CreateClass
-  Scenario Outline: Check if admin is able to create class with all valid details
+  Scenario Outline: Check if admin is able to create class with all details and validating positive and negative scenarios
   
     Given Admin creates Post Request for the LMS with below "<TestCase>" for classCreation
     When  Admin calls POST request with endpoint for classCreation

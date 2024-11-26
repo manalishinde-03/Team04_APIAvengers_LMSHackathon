@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.maven.surefire.shared.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -23,10 +24,12 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-
+import api.pojo.GetAllClassPojo;
 import api.pojo.classCrequestPojo;
 import api.pojo.createClassRequestBodyPojo;
 import api.utility.CommonUtils;
+import api.utility.ExcelReader;
+import api.utility.LoggerLoad;
 
 public class createClassRequest extends CommonUtils {
 
@@ -37,8 +40,9 @@ public class createClassRequest extends CommonUtils {
 	ObjectMapper objectMapper = new ObjectMapper();
 	public String dataRequestBody;
 	classCrequestPojo createRequest;
-	String endpoint;
-	String authorization;
+
+
+	// Build Request for Create Class
 
 	public String token() {
 
@@ -48,8 +52,10 @@ public class createClassRequest extends CommonUtils {
 
 		Response res = RestAssured.given().baseUri(CommonUtils.baseURI).header("Content-Type", "application/json")
 				.body(requestBody).when().post("/login").then().assertThat().extract().response();
+        LoggerLoad.info(res.asString());
+        LoggerLoad.info("AnusuyaSelvarah");
 
-		System.out.println(res.asString());
+	    //System.out.println(res.asString());
 		JsonPath js = res.jsonPath();
 		String authtoken = js.getString("token");
 		return authtoken;
@@ -57,11 +63,15 @@ public class createClassRequest extends CommonUtils {
 
 	public RequestSpecification createClassbuildRequest(String Testcase) throws JsonProcessingException, IOException {
 
-		setBatchName(config.getString("BatchName"));
-		setBatchID(Integer.parseInt(config.getString("BatchId")));
-
-		// RestAssured.baseURI = CommonUtils.baseURI;
-		createRequest = classPojoUtil("class", Testcase);
+		//driving batch ID from previous batch test
+		
+		//chaining 
+//		batchIDArrList.add(Integer.parseInt(config.getString("batchID1")));
+//		batchNameArrList.add(config.getString("batchName1"));		  
+//		batchIDArrList.add(Integer.parseInt(config.getString("batchID2")));
+//		batchNameArrList.add(config.getString("batchName2"));	
+		  	
+		createRequest = ExcelReader.classPojoUtil("class", Testcase);
 		dataRequestBody = objectMapper.writeValueAsString(createRequest.getClass());
 		System.out.println("createClassbuildRequest :::::: createRequest ::" + createRequest.toString());
 		dataRequestBody = objectMapper.writeValueAsString(createRequest.getCreateClass());
@@ -70,18 +80,25 @@ public class createClassRequest extends CommonUtils {
 
 	}
 
+	//  Create Class Request
+
 	public Response CreateClassSendRequest() {
 
-		// String Endpoint= CommonUtils.createClassEndPoint;
-		// String Authorization= token();
+		//String Authorization = token();
 
-		String Authorization = token();
 
 		request = RestAssured.given().baseUri(baseURI).header("Content-Type", "application/json").body(dataRequestBody);
 
-		switch (authorization) {
+		// updating the baseUri for InvalidBaseUri test case
+		if (ExcelReader.baseUrlFromDataFile != null && ExcelReader.baseUrlFromDataFile.contains("InvalidUri")) {
+		  	request.baseUri("https://lms-hackthon-oct24-3efc7e0df381.herokuapp.com/lmsInvalid");
+        }
+		
+		switch (ExcelReader.authorization) {
 		case "bearer":
 			request.header("Authorization", "Bearer " + token()); // Add Bearer token
+//			request.header("Authorization", "Bearer " + CommonUtils.getAdminToken()); // Add Bearer token
+
 			break;
 
 		case "noauth":
@@ -89,14 +106,11 @@ public class createClassRequest extends CommonUtils {
 			break;
 
 		default:
-			throw new IllegalArgumentException("Invalid token type: " + Authorization);
+			throw new IllegalArgumentException("Invalid token type: " + token());
+//			throw new IllegalArgumentException("Invalid token type: " + CommonUtils.getAdminToken());
 		}
 
-//		if (null!=Authorization) {
-//			request.header("Authorization", "Bearer " + Authorization );
-//			}	 
-//			
-		response = request.when().post(endpoint);
+		response = request.when().post(ExcelReader.endpoint);
 
 		statusCode = response.getStatusCode();
 		statusLine = response.getStatusLine();
@@ -111,7 +125,7 @@ public class createClassRequest extends CommonUtils {
 		Assert.assertEquals(response.getStatusCode(), Integer.parseInt(ExpStatusCode));
 		return true;
 	}
-
+		
 	public boolean SchemaValidation() {
 
 		File schemaFile = new File("src/test/resources/Schema/CreateClassSchema.json");
@@ -132,103 +146,7 @@ public class createClassRequest extends CommonUtils {
 		return true;
 	}
 
-	public static String getCellValue(Cell cell) {
-		if (cell == null) {
-			return ""; // Return empty string for null cells
-		}
+	
 
-		switch (cell.getCellType()) {
-		case STRING:
-			return cell.getStringCellValue();
-		case NUMERIC:
-			return String.valueOf((int) cell.getNumericCellValue());
-		case BOOLEAN:
-			return String.valueOf(cell.getBooleanCellValue());
-		case BLANK:
-			return "";
-		default:
-			return "Unsupported Type";
-		}
-	}
-
-	public classCrequestPojo classPojoUtil(String Sheet, String TestCase) throws IOException {
-
-		XSSFWorkbook wb;
-		File file = new File(config.getString("DataFile"));
-		FileInputStream fis = new FileInputStream(file);
-		wb = new XSSFWorkbook(fis);
-		XSSFSheet sheet = wb.getSheet(Sheet);
-		classCrequestPojo classreq = new classCrequestPojo();
-		createClassRequestBodyPojo createClass = new createClassRequestBodyPojo();
-		// int BATCH_ID = 8570;
-
-		for (Row row : sheet) {
-
-			Cell firstCell = row.getCell(0);
-
-			if (null != firstCell && firstCell.getStringCellValue() != "" && firstCell.getCellType() == CellType.STRING
-					&& firstCell.getStringCellValue().equals(TestCase)) {
-
-				System.out.println("Row :" + firstCell.getStringCellValue());
-
-				if (TestCase.startsWith("POST"))
-
-				{
-					if (row.getCell(4) != null) {
-						createClass.setBatchId(Integer.parseInt(getCellValue(row.getCell(4))));
-					}
-
-					createClass.setClassComments(row.getCell(5) != null ? row.getCell(5).getStringCellValue() : null);
-
-					if (row.getCell(6) != null) {
-
-						String classDate = row.getCell(6).getStringCellValue();
-						System.out.println("Date class1: " + classDate);
-						classDate = classDate.replaceAll("^\"|\"$", "");
-						System.out.println("Date class2: " + classDate);
-
-//		            String classDate1 = getCellValue(row.getCell(6));
-//		            System.out.println("Date class1: "+classDate1);
-						createClass.setClassDate(classDate);
-
-					}
-
-					createClass
-							.setClassDescription(row.getCell(7) != null ? row.getCell(7).getStringCellValue() : null);
-
-					if (row.getCell(8) != null) {
-						String classNo = getCellValue(row.getCell(8));
-						System.out.println("Class No: " + classNo);
-						createClass.setClassNo(
-								classNo != null && !classNo.isEmpty() ? Integer.parseInt(classNo.trim()) : null);
-					}
-
-					createClass.setClassNotes(row.getCell(9) != null ? row.getCell(9).getStringCellValue() : null);
-					createClass.setClassRecordingPath(
-							row.getCell(10) != null ? row.getCell(10).getStringCellValue() : null);
-					createClass.setClassStaffId(row.getCell(11) != null ? row.getCell(11).getStringCellValue() : null);
-					createClass.setClassTopic(row.getCell(12) != null ? row.getCell(12).getStringCellValue() : null);
-
-					// date1,date2
-					if (row.getCell(13) != null) {
-						String classScheduleListStr = row.getCell(13).getStringCellValue();
-						List<String> list = Arrays.asList(classScheduleListStr.split(","));
-						createClass.setClassScheduledDates(list);
-					}
-
-					classreq.setCreateClass(createClass);
-					classreq.setAuthorization(row.getCell(15) != null ? row.getCell(15).getStringCellValue() : null);
-					System.out.println("Authorization :" + row.getCell(15));
-					authorization = classreq.getAuthorization();
-
-					classreq.setEndpoint(row.getCell(2) != null ? row.getCell(2).getStringCellValue() : null);
-					System.out.println("Endpoint" + row.getCell(2));
-					endpoint = classreq.getEndpoint();
-				}
-			}
-			wb.close();
-
-		}
-		return classreq;
-	}
+	
 }

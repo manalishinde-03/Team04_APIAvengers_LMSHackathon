@@ -18,14 +18,7 @@ public class classCreateSteps {
 	createClassRequest createClassReq = new createClassRequest();
 	public Response response;
 
-	// Background
-
-	@Given("Admin sets {string} Authorization to Bearer Token")
-	public void admin_sets_authorization_to_bearer_token(String TestCase) {
-		// createBatchReq.Background_Auth(TestCase);
-	}
-
-	// Scenario: Check if admin is able to create class with all valid details
+	// Scenario: Check if admin is able to create class with all positive and negative scenarios
 
 	@Given("Admin creates Post Request for the LMS with below {string} for classCreation")
 	public void admin_creates_post_request_for_the_lms_with_below_for_classCreation(String TestCase)

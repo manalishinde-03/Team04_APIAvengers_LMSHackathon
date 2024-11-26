@@ -77,6 +77,7 @@ public class createClassRequestBodyPojo {
 	public void setClassScheduledDates(List<String> classScheduledDates) {
 		this.classScheduledDates = classScheduledDates;
 	}
+	
 
 
     
