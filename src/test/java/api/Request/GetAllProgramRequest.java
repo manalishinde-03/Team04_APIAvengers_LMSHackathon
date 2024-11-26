@@ -1,6 +1,7 @@
 package api.Request;
 
 import api.Pojo.CreateProgramRequestPojo;
+import api.StepDefinitions.classGetAllSteps;
 import api.Utility.CommonUtils;
 import api.Utility.ExcelReader;
 import io.restassured.RestAssured;
@@ -9,6 +10,9 @@ import io.restassured.specification.RequestSpecification;
 
 import java.util.HashMap;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
@@ -20,6 +24,7 @@ public class GetAllProgramRequest extends CommonUtils {
     String statusLine;
     private final static HashMap<String, CreateProgramRequestPojo> testDataMap = new HashMap<>();
 
+    private static final Logger log = LogManager.getLogger(GetAllProgramRequest.class);
     public RequestSpecification buildRequest(CreateProgramRequestPojo createProgramRequestPojo) {
         RestAssured.baseURI = baseURI;
 
@@ -36,7 +41,7 @@ public class GetAllProgramRequest extends CommonUtils {
             request.baseUri(baseURI);
         }
 
-        System.out.println("Request :" + request.log().all());
+        log.info("Request :" + request.log().all());
         return request;
     }
 
@@ -59,6 +64,8 @@ public class GetAllProgramRequest extends CommonUtils {
 
         statusCode = response.getStatusCode();
         statusLine = response.getStatusLine();
+        log.info(statusCode);
+        log.info(statusLine);
         
         return response;
     }

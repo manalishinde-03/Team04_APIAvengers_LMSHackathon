@@ -1,0 +1,71 @@
+{
+    "batchId": {
+        "type": "integer"
+    },
+    "classComments": {
+        "type": [
+            "string",
+            "null"
+        ]
+    },
+    "classDate": {
+        "type": "string"
+    },
+    "classDescription": {
+        "type": [
+            "string",
+            "null"
+        ]
+    },
+    "classNo": {
+        "type": "integer"
+    },
+    "classStatus": {
+        "type": "string"
+    },
+    "classNotes": {
+        "type": [
+            "string",
+            "null"
+        ]
+    },
+    "classRecordingPath": {
+        "type": [
+            "string",
+            "null"
+        ]
+    },
+    "classStaffId": {
+        "type": "string"
+    },
+    "classTopic": {
+        "type": "string"
+    },
+    "classScheduledDates": {
+        "type": [
+            "array",
+            "null"
+        ],
+        "items": [
+            {
+                "type": "string"
+            },
+            {
+                "type": "string"
+            }
+        ]
+    },
+    "required": [
+      "batchId",
+      "classComments",
+      "classDate",
+      "classDescription",
+      "classNo",
+      "classStatus",
+      "classNotes",
+      "classRecordingPath",
+      "classStaffId",
+      "classTopic",
+      "classScheduledDates"
+    ]
+}

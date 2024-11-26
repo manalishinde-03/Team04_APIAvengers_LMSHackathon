@@ -2,6 +2,8 @@ package api.StepDefinitions;
 
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,6 +17,8 @@ import io.restassured.response.Response;
 public class BatchModuleSteps {
 	
 	BatchModuleRequest batchModule= new BatchModuleRequest();	
+	
+	 private static final Logger log = LogManager.getLogger(BatchModuleSteps.class);
 	
 	// Create Batch
 	

@@ -10,8 +10,8 @@ Feature: Update Program Module
   Examples:
   | TestCaseID     | ExpectedStatusCode | programIndex |
   | PUT_PROGRAM_01 |                200 |                0 |
-  | PUT_PROGRAM_02 |                200 |                1 |
-  | PUT_PROGRAM_03 |                200 |                0 |
+  | PUT_PROGRAM_02 |                200 |                0 |
+  | PUT_PROGRAM_03 |                200 |                1 |
   | PUT_PROGRAM_04 |                400 |                0 |
   | PUT_PROGRAM_06 |                400 |                0 |
   | PUT_PROGRAM_07 |                400 |                0 |
@@ -34,9 +34,8 @@ Feature: Update Program Module
   
   Examples:
   | TestCaseID     | ExpectedStatusCode |
-  | PUT_PROGRAM_05 |                401 |
+  | PUT_PROGRAM_08 |                401 |
   
- # PUT by Program ID Scenarios
   @TC10
   Scenario Outline: Validate API response for updating program by ID
     Given Admin creates PUT request body for "<TestCaseID>"
@@ -46,7 +45,7 @@ Feature: Update Program Module
     Examples: 
       | TestCaseID        | ExpectedStatusCode | programIndex |
       | PUT_PROGRAM_ID_01 |                200 |            0 |
-      | PUT_PROGRAM_ID_02 |                200 |            1 |
+      | PUT_PROGRAM_ID_02 |                200 |            0 |
       | PUT_PROGRAM_ID_03 |                200 |            0 |
       
       

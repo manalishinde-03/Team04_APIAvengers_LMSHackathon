@@ -3,6 +3,9 @@ package api.Request;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import api.Pojo.CreateProgramRequestPojo;
@@ -26,25 +29,7 @@ public class DeleteProgramRequest extends CommonUtils {
 
 	private HashMap<String, CreateProgramRequestPojo> testDataMap = new HashMap<>();
 
-	  public RequestSpecification buildRequest(CreateProgramRequestPojo createProgramRequestPojo) {
-	        RestAssured.baseURI = baseURI;
-	        
-
-	        request = RestAssured
-	        		.given()
-	                .header("Content-Type", "application/json");
-
-	        if(!createProgramRequestPojo.getAction().contains("NoAuth")) {
-	           // request.auth().oauth2(getAdminToken());
-	        	
-	        	request
-	        	.header("Authorization", "Bearer " + CommonUtils.getAdminToken());
-	            System.out.println(">>Received auth token : "+getAdminToken());
-	        }
-
-	        System.out.println("Request :" + request.log().all());
-	        return request;
-	    }
+	private static final Logger log = LogManager.getLogger(CreateProgramRequest.class);
 
 	public void loadTestData(String excelPath, String sheetName) throws Exception {
 		if (testDataMap.isEmpty()) {
@@ -62,78 +47,61 @@ public class DeleteProgramRequest extends CommonUtils {
 		}
 		return testDataMap.get(testCaseID);
 	}
-	
-	public Response deleteProgramByIDReq(int progIndex,String testCaseID) {
+
+	public RequestSpecification buildRequest(CreateProgramRequestPojo createProgramRequestPojo) {
+		RestAssured.baseURI = baseURI;
+		request = RestAssured.given().header("Content-Type", "application/json");
+
+		if (!createProgramRequestPojo.getAction().contains("NoAuth")) {
+			request.header("Authorization", "Bearer " + CommonUtils.getAdminToken());
+		} else {
+			request.baseUri(baseURI);
+		}
+
+		log.info("Request :" + request.log().toString());
+		return request;
+	}
+
+	public Response deleteProgramByIDReq(int progIndex, String testCaseID) {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
 		String endpoint = programData.getEndPoint();
 
-		//String jsonBody = new ObjectMapper().writeValueAsString(programData);
-		//System.out.println("JSON for TestCaseID " + testCaseID + ": " + jsonBody);
+		log.info("Using Endpoint: " + endpoint);
+		if (programData.getEndPoint().contains("{") && programData.getEndPoint().contains("}")) {
 
-		System.out.println("Using Endpoint: " + endpoint);
-		 if (programData.getEndPoint().contains("{") && programData.getEndPoint().contains("}")) {
+			RestAssured.baseURI = CommonUtils.baseURI;
+			response = RestAssured.given().header("Content-Type", "application/json")
+					.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
+					.delete(endpoint, getProgramID().get(progIndex));
 
-		RestAssured.baseURI = CommonUtils.baseURI;
-		 response = RestAssured
-				.given()
-				.header("Content-Type", "application/json")
-				.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
-				.delete(endpoint,getProgramID().get(progIndex));
-		 
-		 }
+		} else {
+			RestAssured.baseURI = CommonUtils.baseURI;
+			response = RestAssured.given().header("Content-Type", "application/json")
+					.header("Authorization", "Bearer " + CommonUtils.getAdminToken()).delete(endpoint);
 
-		System.out.println("Response Status Code: " + response.getStatusCode());
-		System.out.println("Response Body: " + response.getBody().asPrettyString());
+		}
+
+		log.info("Response Body: " + response.getBody().asPrettyString());
 
 		return response;
 	}
-	
-	public Response sendPostRequest(String testCaseID) throws Exception {
+
+	public Response deleteProgramByNameReq(int progIndex, String testCaseID) {
 
 		CreateProgramRequestPojo programData = getProgramData(testCaseID);
 		String endpoint = programData.getEndPoint();
 
-		String jsonBody = new ObjectMapper().writeValueAsString(programData);
-		System.out.println("JSON for TestCaseID " + testCaseID + ": " + jsonBody);
+		response = RestAssured.delete(endpoint, getProgramName().get(progIndex));
 
-		System.out.println("Using Endpoint: " + endpoint);
+		log.info("Response Status Code: " + response.getStatusCode());
+		log.info("Response Body: " + response.getBody().asPrettyString());
+		if (response.getBody().asString().contains("message")) {
+			log.info("Message: " + response.jsonPath().getString("message"));
 
-		RestAssured.baseURI = CommonUtils.baseURI;
-		Response response = RestAssured
-				.given()
-				.header("Content-Type", "application/json")
-				.header("Authorization", "Bearer " + CommonUtils.getAdminToken())
-				 .body(programData)
-				.post(endpoint);
-
-		
-		if(response.getStatusCode()==201) {
-			
-			JsonPath jsonPath = response.jsonPath();
-			if (jsonPath.get("programId") != null) {
-				programID = jsonPath.getInt("programId");
-				System.out.println("Program ID from response: " + programID);
-				
-				CommonUtils.setProgramID(programID); 
-				
-			} else {
-				System.out.println("No Program ID found in the response.");
-			}
-			
-			
-			programName = response.jsonPath().getString("programName");
-			System.out.println("Program Name from response: " + programName);
-			CommonUtils.setProgramName(programName);
-			
 		}
-		
-		programStatus = response.jsonPath().getString("programStatus");
-
-		System.out.println("Response Status Code: " + response.getStatusCode());
-		System.out.println("Response Body: " + response.getBody().asPrettyString());
-
 		return response;
+
 	}
 
 }

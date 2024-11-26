@@ -48,14 +48,12 @@ public class CommonUtils {
 
 	public static ArrayList<Integer> getProgramID() {
 
-		System.out.println("In Get >>>" + programIDArrList);
 		return programIDArrList;
 	}
 
 	public static void setProgramName(String programName) {
 
 		programNameArrList.add(programName);
-		System.out.println("In Set programName >>>" + programNameArrList);
 	}
 
 	public static ArrayList<String> getProgramName() {

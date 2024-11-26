@@ -14,7 +14,6 @@ import org.testng.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import api.Payload.CreateProgramPayload;
 import api.Pojo.CreateProgramRequestPojo;
 import api.Request.CreateProgramRequest;
 import api.Request.DeleteProgramRequest;
@@ -30,13 +29,13 @@ public class DeleteProgramSteps extends CommonUtils {
 	
 	CreateProgramRequest createProgramRequest = new CreateProgramRequest();
 	CreateProgramRequestPojo createProgramPojo = new CreateProgramRequestPojo();
-	CreateProgramPayload createProgramPayload = new CreateProgramPayload();
 	public Response response;
-	//public static String baseURI ;
 	String DataRequestBody;
 	ObjectMapper objectMapper = new ObjectMapper();
 	
 	 private HashMap<String, CreateProgramRequestPojo> testDataMap = new HashMap<>();
+	 
+	 private static final Logger log = LogManager.getLogger(DeleteProgramSteps.class);
 
 	    public static final String EXCEL_PATH = CommonUtils.excelFilePath;
 	    private static final String SHEET_NAME = "Program";
@@ -58,9 +57,19 @@ public class DeleteProgramSteps extends CommonUtils {
 	    }
 
 	    @When("Admin sends DELETE request for {int} with invalid Program ID for {string}")
-	    public void admin_sends_delete_request_for_with_invalid_program_id_for(Integer int1, String string) {
-	        
+	    public void admin_sends_delete_request_for_with_invalid_program_id_for(int progIndex, String testCaseId) {
+	    	response = delProgramRequest.deleteProgramByIDReq(progIndex,testCaseId);
 	    	
+	    }
+	    
+	    @When("Admin sends DELETE request for {int} with programName and valid endpoint for {string}")
+	    public void admin_sends_delete_request_for_with_program_name_and_valid_endpoint_for(int progIndex, String testCaseId) {
+	    	response = delProgramRequest.deleteProgramByNameReq(progIndex,testCaseId);
+	    }
+
+	    @When("Admin sends DELETE request for {int} with invalid Program Name for {string}")
+	    public void admin_sends_delete_request_for_with_invalid_program_name_for(int progIndex, String testCaseId) {
+	    	response = delProgramRequest.deleteProgramByNameReq(progIndex,testCaseId);
 	    }
 	
 }
